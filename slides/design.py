@@ -74,7 +74,8 @@ def add_text(slide, left, top, width, height, runs, align=PP_ALIGN.LEFT,
         p.line_spacing = line_spacing
         p.space_after = Pt(space_after)
         for seg in para:
-            text, size, color, bold = seg[0], seg[1], seg[2], seg[3]
+            text, size, color = seg[0], seg[1], seg[2]
+            bold = seg[3] if len(seg) > 3 else False
             font = seg[4] if len(seg) > 4 else JP_FONT
             r = p.add_run()
             r.text = text
