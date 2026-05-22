@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>東京都中央区 主任ケアマネの会に参加する意義 ｜ 事業所内研修</title>
+<style>
+  :root{
+    --main:#1f7a6b;
+    --main-dark:#155b50;
+    --accent:#e8a33d;
+    --ink:#23302e;
+    --soft:#f4f7f6;
+    --line:#d6e3e0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+    background:#2b3a38;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .deck{position:relative;width:100vw;height:100vh;overflow:hidden;}
+  .slide{
+    position:absolute;inset:0;
+    display:none;
+    flex-direction:column;
+    padding:6vh 7vw 9vh;
+    background:#fff;
+  }
+  .slide.active{display:flex;}
+  .slide.cover{
+    background:linear-gradient(135deg,var(--main) 0%,var(--main-dark) 100%);
+    color:#fff;justify-content:center;
+  }
+  .kicker{
+    font-size:clamp(13px,1.5vw,18px);
+    letter-spacing:.18em;
+    color:var(--main);
+    font-weight:700;
+    margin-bottom:1.4vh;
+  }
+  .cover .kicker{color:var(--accent);}
+  h1{
+    font-size:clamp(28px,4.6vw,58px);
+    line-height:1.35;
+    font-weight:800;
+    letter-spacing:.01em;
+  }
+  h2{
+    font-size:clamp(22px,3.2vw,40px);
+    line-height:1.4;
+    font-weight:800;
+    color:var(--main-dark);
+    border-left:10px solid var(--accent);
+    padding-left:18px;
+    margin-bottom:3.2vh;
+  }
+  .cover .sub{
+    margin-top:3vh;
+    font-size:clamp(15px,2vw,24px);
+    font-weight:500;
+    opacity:.95;
+    line-height:1.7;
+  }
+  .cover .meta{
+    margin-top:6vh;
+    font-size:clamp(12px,1.4vw,17px);
+    opacity:.8;
+    border-top:1px solid rgba(255,255,255,.3);
+    padding-top:2.4vh;
+    max-width:640px;
+  }
+  .body{flex:1;display:flex;flex-direction:column;justify-content:center;}
+  p.lead{
+    font-size:clamp(15px,1.9vw,23px);
+    line-height:1.85;
+    margin-bottom:2.4vh;
+  }
+  ul{list-style:none;}
+  li{
+    font-size:clamp(14px,1.8vw,22px);
+    line-height:1.7;
+    padding:1.3vh 0 1.3vh 42px;
+    position:relative;
+    border-bottom:1px dashed var(--line);
+  }
+  li:last-child{border-bottom:none;}
+  li::before{
+    content:"";
+    position:absolute;left:6px;top:2.1vh;
+    width:16px;height:16px;border-radius:4px;
+    background:var(--main);
+  }
+  li b{color:var(--main-dark);}
+  .num-list li::before{
+    content:counter(n);
+    counter-increment:n;
+    background:var(--accent);
+    color:#fff;
+    width:30px;height:30px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:800;
+    left:0;top:1vh;
+  }
+  .num-list{counter-reset:n;}
+  .num-list li{padding-left:48px;}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2vh 2vw;}
+  .card{
+    background:var(--soft);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:2.6vh 1.6vw;
+  }
+  .card .cn{
+    display:inline-block;
+    background:var(--main);color:#fff;
+    font-weight:800;font-size:14px;
+    padding:3px 12px;border-radius:20px;margin-bottom:1.4vh;
+  }
+  .card h3{
+    font-size:clamp(15px,1.8vw,21px);
+    color:var(--main-dark);
+    margin-bottom:1vh;line-height:1.4;
+  }
+  .card p{font-size:clamp(12px,1.4vw,16px);line-height:1.65;}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:2.6vw;align-items:start;}
+  .panel{
+    background:var(--soft);
+    border-radius:14px;padding:3vh 2vw;
+    border-top:6px solid var(--main);
+  }
+  .panel.accent{border-top-color:var(--accent);}
+  .panel h3{
+    font-size:clamp(16px,2vw,24px);
+    color:var(--main-dark);margin-bottom:1.6vh;
+  }
+  table{width:100%;border-collapse:collapse;font-size:clamp(12px,1.5vw,19px);}
+  th,td{border:1px solid var(--line);padding:1.5vh 1.4vw;text-align:left;line-height:1.6;}
+  th{background:var(--main);color:#fff;font-weight:700;}
+  td:first-child{background:var(--soft);font-weight:700;color:var(--main-dark);width:30%;}
+  .big-quote{
+    font-size:clamp(20px,3vw,38px);
+    line-height:1.6;font-weight:800;color:var(--main-dark);
+    text-align:center;
+  }
+  .big-quote span{color:var(--accent);}
+  .footer{
+    position:absolute;bottom:3.4vh;left:7vw;right:7vw;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:12px;color:#8aa19c;
+    border-top:1px solid var(--line);padding-top:1.2vh;
+  }
+  .cover .footer{border-top-color:rgba(255,255,255,.25);color:rgba(255,255,255,.7);}
+  .nav{
+    position:fixed;bottom:18px;right:22px;z-index:50;
+    display:flex;gap:8px;align-items:center;
+  }
+  .nav button{
+    background:var(--main);color:#fff;border:none;
+    width:42px;height:42px;border-radius:50%;
+    font-size:18px;cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,.3);
+  }
+  .nav button:hover{background:var(--main-dark);}
+  .counter{
+    background:rgba(0,0,0,.6);color:#fff;
+    padding:6px 14px;border-radius:20px;font-size:14px;font-weight:700;
+  }
+  .progress{
+    position:fixed;top:0;left:0;height:5px;
+    background:var(--accent);z-index:50;transition:width .25s;
+  }
+  @media print{
+    body{background:#fff;}
+    .slide{display:flex !important;position:relative;page-break-after:always;
+      width:100%;height:100vh;border:none;}
+    .nav,.progress{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 表紙 -->
+  <section class="slide cover active">
+    <div class="kicker">居宅介護支援事業所 ｜ 事業所内研修</div>
+    <h1>東京都中央区<br>「主任ケアマネの会」に<br>参加する意義</h1>
+    <p class="sub">― 地域連携と人材育成を、事業所の力に変える ―</p>
+    <div class="meta">
+      対象：管理者・主任介護支援専門員<br>
+      ねらい：会への参加を「個人の活動」から「事業所の戦略」へ位置づける
+    </div>
+    <div class="footer"><span>事業所内研修資料</span><span>1</span></div>
+  </section>
+
+  <!-- 2 アジェンダ -->
+  <section class="slide">
+    <div class="kicker">AGENDA</div>
+    <h2>本日の研修のねらいと流れ</h2>
+    <div class="body">
+      <p class="lead">主任ケアマネの会への参加を、単なる「外部の集まり」ではなく、<b>事業所の運営基盤を強くする取り組み</b>として捉え直します。</p>
+      <ul class="num-list">
+        <li>主任ケアマネに求められる役割の再確認</li>
+        <li>「中央区主任ケアマネの会」とは何か</li>
+        <li>参加する6つの意義（連携・情報・困難事例・研修要件・育成・地域貢献）</li>
+        <li>事業所経営から見たメリットと留意点</li>
+        <li>当事業所としての参加方針・今後の取り組み</li>
+      </ul>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>2</span></div>
+  </section>
+
+  <!-- 3 主任ケアマネの役割 -->
+  <section class="slide">
+    <div class="kicker">前提の確認</div>
+    <h2>主任ケアマネに求められる役割</h2>
+    <div class="body">
+      <p class="lead">主任介護支援専門員は、自らの担当業務にとどまらず<b>「地域」と「事業所内」をつなぐ中核</b>としての機能が期待されています。</p>
+      <div class="cards">
+        <div class="card">
+          <span class="cn">役割 1</span>
+          <h3>ケアマネジメントの質の管理</h3>
+          <p>事業所内の支援困難事例への助言、適切なケアプラン作成の指導。</p>
+        </div>
+        <div class="card">
+          <span class="cn">役割 2</span>
+          <h3>人材育成・スーパーバイズ</h3>
+          <p>後進のケアマネへのOJT、相談対応、実習指導者としての関わり。</p>
+        </div>
+        <div class="card">
+          <span class="cn">役割 3</span>
+          <h3>地域づくり・多職種連携</h3>
+          <p>地域包括支援センターや他職種と連携し、地域課題に取り組む。</p>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:2.6vh;">→ これらの役割を一人で抱えず磨くための「場」が、<b>主任ケアマネの会</b>です。</p>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>3</span></div>
+  </section>
+
+  <!-- 4 会とは -->
+  <section class="slide">
+    <div class="kicker">WHAT</div>
+    <h2>「中央区 主任ケアマネの会」とは</h2>
+    <div class="body">
+      <div class="two">
+        <div class="panel">
+          <h3>概要</h3>
+          <ul>
+            <li>中央区内で活動する<b>主任ケアマネが集う自主的な研鑽の場</b></li>
+            <li>地域包括支援センターや行政と連携した運営</li>
+            <li>定例会・事例検討会・研修会などを実施</li>
+          </ul>
+        </div>
+        <div class="panel accent">
+          <h3>主な活動内容</h3>
+          <ul>
+            <li>支援困難事例の検討・情報交換</li>
+            <li>制度改正・行政情報の共有</li>
+            <li>多職種・地域資源とのネットワークづくり</li>
+            <li>主任ケアマネ更新研修につながる学びの機会</li>
+          </ul>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:2.8vh;">※ 開催頻度・申込方法など最新の運営状況は、担当の地域包括支援センターにご確認ください。</p>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>4</span></div>
+  </section>
+
+  <!-- 5 意義の全体像 -->
+  <section class="slide">
+    <div class="kicker">OVERVIEW</div>
+    <h2>参加する「6つの意義」</h2>
+    <div class="body">
+      <div class="cards">
+        <div class="card"><span class="cn">意義 1</span><h3>地域ネットワークの構築</h3><p>顔の見える関係で、連携先・相談先を確保。</p></div>
+        <div class="card"><span class="cn">意義 2</span><h3>最新情報のキャッチアップ</h3><p>制度改正・報酬改定・行政情報をいち早く入手。</p></div>
+        <div class="card"><span class="cn">意義 3</span><h3>困難事例への対応力</h3><p>他事業所の知見を借り、抱え込みを防ぐ。</p></div>
+        <div class="card"><span class="cn">意義 4</span><h3>研修要件への対応</h3><p>主任更新研修・法定研修につながる学び。</p></div>
+        <div class="card"><span class="cn">意義 5</span><h3>後進育成への還元</h3><p>学びを事業所内OJTに展開し、組織力UP。</p></div>
+        <div class="card"><span class="cn">意義 6</span><h3>地域包括ケアへの貢献</h3><p>地域課題の解決に関わり、事業所の信頼向上。</p></div>
+      </div>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>5</span></div>
+  </section>
+
+  <!-- 6 意義1 -->
+  <section class="slide">
+    <div class="kicker">意義 1</div>
+    <h2>地域ネットワークの構築・連携先の確保</h2>
+    <div class="body">
+      <p class="lead">中央区という<b>同じ地域</b>で働く主任ケアマネと「顔の見える関係」を築けます。</p>
+      <ul>
+        <li><b>連携先の確保</b>：医療機関・他事業所・インフォーマル資源への“つなぎ”がスムーズに</li>
+        <li><b>緊急時の相談先</b>：困ったとき、すぐに相談できる同職種の仲間ができる</li>
+        <li><b>地域資源の把握</b>：区内のサービス事情・空き状況などの生きた情報が得られる</li>
+        <li><b>担当者交代時のリスク低減</b>：個人ではなく事業所として地域につながる</li>
+      </ul>
+      <p class="lead" style="margin-top:2.4vh;">→ ネットワークは<b>事業所の“見えない資産”</b>。利用者支援の選択肢が広がります。</p>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>6</span></div>
+  </section>
+
+  <!-- 7 意義2 -->
+  <section class="slide">
+    <div class="kicker">意義 2</div>
+    <h2>制度改正・最新情報のキャッチアップ</h2>
+    <div class="body">
+      <p class="lead">介護保険制度は改正が頻繁です。<b>情報の遅れは、運営リスクに直結</b>します。</p>
+      <ul>
+        <li><b>制度改正・報酬改定</b>の解釈や実務対応をいち早く共有できる</li>
+        <li><b>区独自の事業・行政情報</b>（中央区の施策や様式変更など）が得られる</li>
+        <li><b>運営指導（実地指導）対策</b>：他事業所の指摘事例から学べる</li>
+        <li>会で得た情報を持ち帰り、<b>事業所内で正確に共有</b>できる</li>
+      </ul>
+      <p class="lead" style="margin-top:2.4vh;">→ 「知らなかった」による減算・返戻を防ぎ、<b>適正な運営</b>を支えます。</p>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>7</span></div>
+  </section>
+
+  <!-- 8 意義3 -->
+  <section class="slide">
+    <div class="kicker">意義 3</div>
+    <h2>困難事例への対応力強化</h2>
+    <div class="body">
+      <div class="two">
+        <div class="panel">
+          <h3>事業所内だけでは限界がある</h3>
+          <ul>
+            <li>虐待・セルフネグレクト・8050問題などの複合課題</li>
+            <li>クレーム対応・支援拒否ケース</li>
+            <li>一人で抱え込むと<b>燃え尽き・離職</b>のリスク</li>
+          </ul>
+        </div>
+        <div class="panel accent">
+          <h3>会の事例検討で得られるもの</h3>
+          <ul>
+            <li>多様な視点・経験からの<b>具体的な助言</b></li>
+            <li>「他もやっている」という<b>心理的な支え</b></li>
+            <li>地域包括・行政との<b>連携の糸口</b></li>
+          </ul>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:2.8vh;">→ 対応の質が上がり、担当ケアマネの<b>精神的負担の軽減</b>にもつながります。</p>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>8</span></div>
+  </section>
+
+  <!-- 9 意義4 -->
+  <section class="slide">
+    <div class="kicker">意義 4</div>
+    <h2>研修要件への対応・専門性の維持</h2>
+    <div class="body">
+      <p class="lead">主任介護支援専門員は<b>更新（5年ごと）</b>が必要であり、継続的な研鑽が前提です。</p>
+      <ul>
+        <li>会での学びは<b>主任更新研修・法定研修</b>の内容理解を深める土台になる</li>
+        <li>最新の実務知識に触れ続けることで<b>専門性が陳腐化しない</b></li>
+        <li>事例提供・発表の経験が、<b>指導者・実習指導者としての力</b>を養う</li>
+        <li>「資格を持っているだけ」から「機能している主任ケアマネ」へ</li>
+      </ul>
+      <p class="lead" style="margin-top:2.4vh;">→ 特定事業所加算など、<b>主任ケアマネの実働が事業所評価に直結</b>します。</p>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>9</span></div>
+  </section>
+
+  <!-- 10 意義5 -->
+  <section class="slide">
+    <div class="kicker">意義 5</div>
+    <h2>後進育成への還元 ― 事業所内OJTの強化</h2>
+    <div class="body">
+      <p class="lead">会への参加は<b>個人で完結させず、事業所に“持ち帰る”</b>ことで価値が何倍にもなります。</p>
+      <div class="cards">
+        <div class="card"><span class="cn">持ち帰り 1</span><h3>朝礼・内部研修で共有</h3><p>会で得た制度情報・事例を、定例の場で全員に展開する。</p></div>
+        <div class="card"><span class="cn">持ち帰り 2</span><h3>事例検討の手法を導入</h3><p>会で学んだ進め方を、事業所内の事例検討会に応用する。</p></div>
+        <div class="card"><span class="cn">持ち帰り 3</span><h3>若手のロールモデルに</h3><p>主任ケアマネの学ぶ姿勢が、後進の目標になる。</p></div>
+      </div>
+      <p class="lead" style="margin-top:2.6vh;">→ 一人の学びが<b>チーム全体の底上げ</b>に。育成は採用難への有効な対策です。</p>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>10</span></div>
+  </section>
+
+  <!-- 11 意義6 -->
+  <section class="slide">
+    <div class="kicker">意義 6</div>
+    <h2>地域包括ケアシステムへの貢献と事業所の信頼</h2>
+    <div class="body">
+      <p class="lead">主任ケアマネの会は、<b>中央区の地域包括ケアを支える担い手のひとつ</b>です。</p>
+      <ul>
+        <li>地域ケア会議や地域課題の検討に関わり、<b>地域づくりに参画</b>できる</li>
+        <li>会での積極的な活動が、地域包括・行政・他事業所からの<b>信頼につながる</b></li>
+        <li>「地域に開かれ、地域に貢献している事業所」という<b>評判・ブランド</b>に</li>
+        <li>その評判は、利用者紹介・採用・連携のしやすさに還元される</li>
+      </ul>
+      <p class="lead" style="margin-top:2.4vh;">→ 地域への貢献は、めぐりめぐって<b>事業所自身の安定経営</b>を支えます。</p>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>11</span></div>
+  </section>
+
+  <!-- 12 経営メリット表 -->
+  <section class="slide">
+    <div class="kicker">FOR MANAGEMENT</div>
+    <h2>事業所経営から見たメリット整理</h2>
+    <div class="body">
+      <table>
+        <tr><th>観点</th><th>会への参加がもたらすもの</th></tr>
+        <tr><td>運営の適正化</td><td>制度改正・指導事例の把握による減算・返戻リスクの低減</td></tr>
+        <tr><td>支援の質</td><td>困難事例対応力の向上、ケアプラン点検の視点獲得</td></tr>
+        <tr><td>人材育成</td><td>主任ケアマネを軸としたOJT機能・指導体制の強化</td></tr>
+        <tr><td>定着・離職防止</td><td>抱え込みの解消、相談先の確保による心理的負担の軽減</td></tr>
+        <tr><td>営業・信頼</td><td>地域ネットワーク拡大、紹介・連携のしやすさ、事業所の評判向上</td></tr>
+      </table>
+      <p class="lead" style="margin-top:2.6vh;">→ 参加時間は「コスト」ではなく<b>事業所の基盤への投資</b>と捉えられます。</p>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>12</span></div>
+  </section>
+
+  <!-- 13 留意点 -->
+  <section class="slide">
+    <div class="kicker">CAUTION</div>
+    <h2>参加にあたっての留意点</h2>
+    <div class="body">
+      <p class="lead">効果を最大化し、形骸化させないために、次の点を意識します。</p>
+      <ul>
+        <li><b>業務調整</b>：参加日は訪問・面談スケジュールを事前に調整し、無理なく出席する</li>
+        <li><b>守秘義務</b>：事例検討では個人が特定されないよう配慮し、情報管理を徹底する</li>
+        <li><b>“持ち帰り”を仕組み化</b>：参加報告を定例化し、学びを必ず事業所内で共有する</li>
+        <li><b>属人化の回避</b>：可能な範囲で複数名・交代制での参加も検討する</li>
+        <li><b>受け身にならない</b>：情報を得るだけでなく、事例提供など発信する側にも回る</li>
+      </ul>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>13</span></div>
+  </section>
+
+  <!-- 14 当事業所の方針 -->
+  <section class="slide">
+    <div class="kicker">ACTION PLAN</div>
+    <h2>当事業所としての方針・今後の取り組み</h2>
+    <div class="body">
+      <p class="lead">本研修を踏まえ、会への参加を<b>事業所の正式な取り組み</b>として位置づけます。</p>
+      <ul class="num-list">
+        <li>主任ケアマネの会への<b>継続的な参加</b>を業務として明確化する</li>
+        <li>参加後は<b>定例ミーティングで報告</b>し、学びを全員で共有する</li>
+        <li>会で得た事例検討の手法を、<b>事業所内の事例検討会</b>に取り入れる</li>
+        <li>制度改正情報は<b>速やかに業務手順へ反映</b>する</li>
+        <li>次回更新時期・研修計画と<b>連動させて参加計画</b>を立てる</li>
+      </ul>
+    </div>
+    <div class="footer"><span>中央区 主任ケアマネの会に参加する意義</span><span>14</span></div>
+  </section>
+
+  <!-- 15 まとめ -->
+  <section class="slide cover">
+    <div class="kicker">CONCLUSION</div>
+    <p class="big-quote" style="color:#fff;">
+      主任ケアマネの会への参加は、<br>
+      <span>個人の研鑽</span>であると同時に、<br>
+      <span>事業所の連携力・育成力・信頼</span>を<br>
+      高める「投資」である。
+    </p>
+    <div class="sub" style="text-align:center;">
+      地域とつながり、学びを持ち帰り、チームで活かす。<br>
+      その積み重ねが、利用者支援の質と事業所の未来を支えます。
+    </div>
+    <div class="footer"><span>事業所内研修資料 ｜ ご清聴ありがとうございました</span><span>15</span></div>
+  </section>
+
+</div>
+
+<div class="nav">
+  <span class="counter" id="counter">1 / 15</span>
+  <button id="prev" aria-label="前へ">‹</button>
+  <button id="next" aria-label="次へ">›</button>
+</div>
+
+<script>
+  var slides=document.querySelectorAll('.slide');
+  var total=slides.length;
+  var idx=0;
+  function show(n){
+    idx=Math.max(0,Math.min(total-1,n));
+    slides.forEach(function(s,i){s.classList.toggle('active',i===idx);});
+    document.getElementById('counter').textContent=(idx+1)+' / '+total;
+    document.getElementById('progress').style.width=((idx+1)/total*100)+'%';
+  }
+  document.getElementById('next').onclick=function(){show(idx+1);};
+  document.getElementById('prev').onclick=function(){show(idx-1);};
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')show(idx+1);
+    if(e.key==='ArrowLeft'||e.key==='PageUp')show(idx-1);
+    if(e.key==='Home')show(0);
+    if(e.key==='End')show(total-1);
+  });
+  show(0);
+</script>
+</body>
+</html>
