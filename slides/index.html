@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法定研修制度改正への対応と主任ケアマネ更新研修の戦略</title>
+<style>
+  :root {
+    --primary: #0f4c81;
+    --primary-light: #2d6fb3;
+    --accent: #f5a623;
+    --bg: #f5f7fa;
+    --text: #1f2d3d;
+    --muted: #5a6b80;
+    --card: #ffffff;
+    --border: #d9e1ec;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
+    background: #1a1a1a;
+    color: var(--text);
+    overflow: hidden;
+  }
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slide {
+    width: 90vw;
+    max-width: 1280px;
+    height: 90vh;
+    max-height: 720px;
+    background: var(--bg);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    padding: 56px 72px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+  .slide.active { display: flex; }
+
+  .slide h1 {
+    font-size: 36px;
+    color: var(--primary);
+    border-bottom: 4px solid var(--primary);
+    padding-bottom: 16px;
+    margin-bottom: 28px;
+    letter-spacing: 0.02em;
+  }
+  .slide h2 {
+    font-size: 22px;
+    color: var(--primary-light);
+    margin: 18px 0 10px;
+    font-weight: 600;
+  }
+  .slide p, .slide li {
+    font-size: 20px;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .slide ul, .slide ol {
+    padding-left: 28px;
+    margin: 8px 0 16px;
+  }
+  .slide ul li { list-style: none; position: relative; padding-left: 24px; margin-bottom: 8px; }
+  .slide ul li::before {
+    content: "■";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    font-size: 14px;
+    top: 6px;
+  }
+  .slide ol li { margin-bottom: 8px; padding-left: 6px; }
+
+  /* タイトルスライド */
+  .title-slide {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px;
+  }
+  .title-slide .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 24px;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    margin-bottom: 32px;
+  }
+  .title-slide h1 {
+    color: #fff;
+    border: none;
+    font-size: 44px;
+    line-height: 1.4;
+    margin-bottom: 24px;
+    padding: 0;
+  }
+  .title-slide .subtitle {
+    font-size: 22px;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.7;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+  .title-slide .meta {
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+
+  /* 2カラム */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    flex: 1;
+    overflow: hidden;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    border-left: 5px solid var(--primary-light);
+  }
+  .card.accent { border-left-color: var(--accent); }
+  .card h3 {
+    font-size: 18px;
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .card p, .card li { font-size: 16px; line-height: 1.65; }
+
+  /* 強調ボックス */
+  .callout {
+    background: #fff8e6;
+    border-left: 5px solid var(--accent);
+    padding: 16px 22px;
+    border-radius: 6px;
+    margin: 14px 0;
+    font-size: 18px;
+    color: #6b4e00;
+  }
+  .callout strong { color: #8a6300; }
+
+  /* 表 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  table th, table td {
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    text-align: left;
+  }
+  table th {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+  }
+  table tr:nth-child(even) td { background: #f9fbfd; }
+
+  /* ステップ */
+  .steps {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0;
+    flex-wrap: wrap;
+  }
+  .step {
+    flex: 1;
+    min-width: 180px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--primary-light);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .step .num {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .step h3 { font-size: 16px; color: var(--primary); margin-bottom: 6px; }
+  .step p { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+  /* タイムライン */
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+    margin-top: 12px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    background: var(--primary-light);
+  }
+  .tl-item {
+    position: relative;
+    padding-bottom: 16px;
+  }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 2px var(--primary-light);
+  }
+  .tl-item .year {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 16px;
+  }
+  .tl-item p { font-size: 16px; }
+
+  /* フッタ */
+  .footer {
+    position: absolute;
+    bottom: 18px;
+    left: 72px;
+    right: 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+  }
+  .footer .pagenum {
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  /* ナビ */
+  .nav {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .nav button {
+    background: rgba(255,255,255,0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    color: var(--primary);
+  }
+  .nav button:hover { background: #fff; }
+  .nav .counter {
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 0 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 10px;
+  }
+
+  .closing {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+  }
+  .closing h1 {
+    color: #fff;
+    border: none;
+    font-size: 56px;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  .closing p { color: rgba(255,255,255,0.9); font-size: 22px; }
+
+  .small { font-size: 14px; color: var(--muted); margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 1: タイトル -->
+  <section class="slide title-slide active">
+    <div class="badge">介護支援専門員向け 研修資料</div>
+    <h1>法定研修制度改正への対応と<br>主任ケアマネ更新研修の戦略</h1>
+    <p class="subtitle">研修体系の見直しを踏まえた<br>事業所内での計画的な人材育成</p>
+    <div class="meta">居宅介護支援事業所／地域包括支援センター 管理者・主任介護支援専門員 向け</div>
+  </section>
+
+  <!-- 2: 本日のアジェンダ -->
+  <section class="slide">
+    <h1>本日のアジェンダ</h1>
+    <ol>
+      <li><strong>法定研修制度改正の背景と全体像</strong>　— なぜ今、見直しが必要なのか</li>
+      <li><strong>新研修体系のポイント</strong>　— カリキュラム・受講方法の変更点</li>
+      <li><strong>主任ケアマネ更新研修の現状と課題</strong>　— 5年ごとの更新をどう乗り切るか</li>
+      <li><strong>事業所内での計画的人材育成戦略</strong>　— キャリアパス・OJT・受講体制</li>
+      <li><strong>実践事例とチェックリスト</strong>　— 明日から取り組めるアクション</li>
+    </ol>
+    <div class="callout">
+      <strong>本日のゴール：</strong>研修制度改正の要点を理解し、自事業所における<strong>3〜5年スパン</strong>の人材育成計画を描けるようになる。
+    </div>
+    <div class="footer"><span>法定研修制度改正への対応</span><span class="pagenum">2 / 20</span></div>
+  </section>
+
+  <!-- 3: 改正の背景 -->
+  <section class="slide">
+    <h1>第1章　法定研修制度改正の背景</h1>
+    <div class="two-col">
+      <div class="card">
+        <h3>環境変化①　利用者ニーズの多様化</h3>
+        <ul>
+          <li>独居高齢者・認認介護世帯の増加</li>
+          <li>医療ニーズの高い在宅利用者の増加</li>
+          <li>ヤングケアラー・8050問題など複合課題</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>環境変化②　制度の深化</h3>
+        <ul>
+          <li>地域包括ケアシステムの深化・推進</li>
+          <li>「適切なケアマネジメント手法」の普及</li>
+          <li>科学的介護（LIFE）情報の活用</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>現場の課題</h3>
+        <ul>
+          <li>研修時間が長く業務との両立が困難</li>
+          <li>研修内容の重複・体系の分かりにくさ</li>
+          <li>主任ケアマネ不足と更新の負担</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>制度的要請</h3>
+        <ul>
+          <li>厚労省「介護支援専門員資質向上方策」</li>
+          <li>法定研修ガイドラインの改訂</li>
+          <li>ICT活用（eラーニング）の推進</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer"><span>第1章　改正の背景</span><span class="pagenum">3 / 20</span></div>
+  </section>
+
+  <!-- 4: 改正スケジュール -->
+  <section class="slide">
+    <h1>改正スケジュールと法定研修体系</h1>
+    <div class="two-col">
+      <div>
+        <h2>段階的な施行スケジュール</h2>
+        <div class="timeline">
+          <div class="tl-item"><div class="year">令和6年度〜</div><p>新ガイドラインに基づく研修開始<br>eラーニング科目の本格導入</p></div>
+          <div class="tl-item"><div class="year">令和7年度〜</div><p>都道府県ごとに新カリキュラム順次移行</p></div>
+          <div class="tl-item"><div class="year">令和8年度〜</div><p>新体系への完全移行を目指す</p></div>
+        </div>
+        <p class="small">※施行時期・移行方法は都道府県により異なるため、所管自治体の通知を確認のこと。</p>
+      </div>
+      <div>
+        <h2>法定研修の全体像</h2>
+        <table>
+          <tr><th>研修名</th><th>対象</th></tr>
+          <tr><td>実務研修</td><td>新規登録予定者</td></tr>
+          <tr><td>専門研修課程I</td><td>実務経験概ね2年〜</td></tr>
+          <tr><td>専門研修課程II</td><td>更新時（概ね5年）</td></tr>
+          <tr><td>主任介護支援専門員研修</td><td>主任ケアマネ希望者</td></tr>
+          <tr><td>主任介護支援専門員更新研修</td><td>主任ケアマネ5年ごと</td></tr>
+          <tr><td>再研修</td><td>登録失効者の再登録時</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="footer"><span>第1章　改正の背景</span><span class="pagenum">4 / 20</span></div>
+  </section>
+
+  <!-- 5: 改正の主要ポイント -->
+  <section class="slide">
+    <h1>新研修体系の主要な改正ポイント</h1>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>カリキュラム整理</h3><p>科目間の重複を整理し、実践演習を中心とした構成へ。</p></div>
+      <div class="step"><div class="num">2</div><h3>eラーニング拡大</h3><p>知識習得部分はオンライン化。集合研修は演習・対話中心に。</p></div>
+      <div class="step"><div class="num">3</div><h3>適切なケアマネジメント手法</h3><p>疾患別・状態別の標準的支援を全課程で位置づけ。</p></div>
+      <div class="step"><div class="num">4</div><h3>多職種連携の強化</h3><p>医療・介護・地域資源との連携演習を充実。</p></div>
+      <div class="step"><div class="num">5</div><h3>評価の改善</h3><p>形成的評価（修了後のフォロー）を導入。</p></div>
+    </div>
+    <div class="callout">
+      <strong>事業所インパクト：</strong>受講時間の総量に大きな変化はないものの、<strong>「事前学習・オンライン受講・職場での実践」</strong>がセットになり、<strong>勤務シフトと学習時間の管理</strong>がより重要になります。
+    </div>
+    <div class="footer"><span>第2章　新研修体系のポイント</span><span class="pagenum">5 / 20</span></div>
+  </section>
+
+  <!-- 6: eラーニング活用 -->
+  <section class="slide">
+    <h1>eラーニング活用の留意点</h1>
+    <div class="two-col">
+      <div class="card">
+        <h3>メリット</h3>
+        <ul>
+          <li>受講機会の地域差の縮小</li>
+          <li>業務との両立がしやすい</li>
+          <li>繰り返し視聴で理解定着</li>
+          <li>移動コスト・時間の削減</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>注意すべき点</h3>
+        <ul>
+          <li>受講時間の確保（勤務時間扱いの整理）</li>
+          <li>視聴環境（PC・ネット・静音）の準備</li>
+          <li>個人学習に陥りがちで質問機会が減少</li>
+          <li>修了要件（テスト・課題）の確認</li>
+        </ul>
+      </div>
+    </div>
+    <h2>事業所として整えるべきこと</h2>
+    <ul>
+      <li>就業規則上の<strong>「研修時間の取扱い」</strong>を明確化（労働時間／自己研鑽の区分）</li>
+      <li>受講可能な<strong>個室・PC・ヘッドセット</strong>の確保</li>
+      <li>視聴後の<strong>事業所内シェア会</strong>で学びを定着</li>
+    </ul>
+    <div class="footer"><span>第2章　新研修体系のポイント</span><span class="pagenum">6 / 20</span></div>
+  </section>
+
+  <!-- 7: 主任ケアマネ更新研修の現状 -->
+  <section class="slide">
+    <h1>第3章　主任ケアマネ更新研修の現状</h1>
+    <h2>制度の概要</h2>
+    <table>
+      <tr><th>項目</th><th>内容</th></tr>
+      <tr><td>更新サイクル</td><td>主任介護支援専門員の更新は <strong>5年ごと</strong></td></tr>
+      <tr><td>研修時間</td><td>概ね <strong>46時間</strong>（都道府県により異なる）</td></tr>
+      <tr><td>主な受講要件</td><td>主任ケアマネとしての一定の実務経験／指導実績 等</td></tr>
+      <tr><td>未受講のリスク</td><td>主任ケアマネの資格失効 → <strong>特定事業所加算・包括センター人員要件</strong>に直撃</td></tr>
+    </table>
+    <div class="callout">
+      <strong>経営インパクト：</strong>主任ケアマネが1名でも失効すると、<strong>特定事業所加算（I・II）</strong>や地域包括支援センターの<strong>三職種要件</strong>が満たせなくなる可能性。事業所収益・指定要件に直結する重大リスク。
+    </div>
+    <div class="footer"><span>第3章　主任ケアマネ更新研修</span><span class="pagenum">7 / 20</span></div>
+  </section>
+
+  <!-- 8: 更新研修の課題 -->
+  <section class="slide">
+    <h1>更新研修における4つの課題</h1>
+    <div class="two-col">
+      <div class="card">
+        <h3>① 時間的負担</h3>
+        <p>46時間以上の受講時間に加え、レポート・事例提出の準備が必要。日常業務と並行しての学習負担が大きい。</p>
+      </div>
+      <div class="card accent">
+        <h3>② 受講機会の限定</h3>
+        <p>都道府県開催で年1〜2回。定員制で抽選のことも。受講できない年が続くと更新期限に間に合わないリスク。</p>
+      </div>
+      <div class="card">
+        <h3>③ 業務継続との両立</h3>
+        <p>研修日のケース対応・モニタリング・担当者会議をどう調整するか。事業所全体での体制整備が不可欠。</p>
+      </div>
+      <div class="card accent">
+        <h3>④ 受講要件の管理</h3>
+        <p>「主任ケアマネとしての実務経験」「指導実績」などの要件を、5年間にわたって意識的に積み上げる必要がある。</p>
+      </div>
+    </div>
+    <div class="footer"><span>第3章　主任ケアマネ更新研修</span><span class="pagenum">8 / 20</span></div>
+  </section>
+
+  <!-- 9: 更新戦略 -->
+  <section class="slide">
+    <h1>更新研修への戦略的アプローチ</h1>
+    <h2>「5年前から逆算」する受講計画</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="year">更新5年前</div><p>更新期限・要件をリスト化／業務経験ログの開始</p></div>
+      <div class="tl-item"><div class="year">更新3〜2年前</div><p>指導実績の蓄積（実習指導者、事例検討会講師など）／受講要件チェック</p></div>
+      <div class="tl-item"><div class="year">更新1年前</div><p>受講申込／代替要員・シフト計画の確定／事業所内引き継ぎ準備</p></div>
+      <div class="tl-item"><div class="year">受講中</div><p>業務カバー体制の実施／学習時間の確保</p></div>
+      <div class="tl-item"><div class="year">修了後</div><p>事業所内へのフィードバック／次の5年への引き継ぎ</p></div>
+    </div>
+    <div class="callout"><strong>ポイント：</strong>更新管理を<strong>「個人任せ」</strong>にせず、事業所の<strong>人材台帳</strong>で見える化することが第一歩。</div>
+    <div class="footer"><span>第3章　主任ケアマネ更新研修</span><span class="pagenum">9 / 20</span></div>
+  </section>
+
+  <!-- 10: 人材台帳の例 -->
+  <section class="slide">
+    <h1>人材台帳（更新管理シート）の例</h1>
+    <table>
+      <tr><th>氏名</th><th>資格区分</th><th>有効期限</th><th>次回研修</th><th>受講要件状況</th><th>担当</th></tr>
+      <tr><td>A 主任CM</td><td>主任更新</td><td>R8.3.31</td><td>R7年度 主任更新研修</td><td>○ 指導実績充足</td><td>管理者</td></tr>
+      <tr><td>B CM</td><td>専門II</td><td>R9.3.31</td><td>R8年度 専門研修II</td><td>― </td><td>主任A</td></tr>
+      <tr><td>C CM</td><td>専門I</td><td>R10.3.31</td><td>R7年度 専門研修I</td><td>― </td><td>主任A</td></tr>
+      <tr><td>D 新人CM</td><td>実務研修修了</td><td>R11.3.31</td><td>R8年度 専門研修I</td><td>OJT継続中</td><td>主任A</td></tr>
+    </table>
+    <h2>運用のポイント</h2>
+    <ul>
+      <li>年度初め（4月）に<strong>全員分を更新</strong>し、管理者・主任で共有</li>
+      <li>受講申込時期の<strong>3ヶ月前にアラート</strong>（カレンダー登録）</li>
+      <li>「受講要件」欄は<strong>主任更新で必要な指導実績</strong>等を具体的に記載</li>
+    </ul>
+    <div class="footer"><span>第3章　主任ケアマネ更新研修</span><span class="pagenum">10 / 20</span></div>
+  </section>
+
+  <!-- 11: 第4章 事業所内人材育成 -->
+  <section class="slide">
+    <h1>第4章　事業所内での計画的人材育成</h1>
+    <div class="callout">
+      <strong>基本認識：</strong>法定研修は<strong>「最低限の共通基盤」</strong>に過ぎない。<br>事業所内のOJT・キャリアパス・組織文化がそろって、はじめて<strong>研修効果は実務に定着</strong>する。
+    </div>
+    <h2>人材育成戦略の3本柱</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>キャリアパス設計</h3><p>新人→中堅→主任→指導者まで、段階ごとの役割と目標を明確化。</p></div>
+      <div class="step"><div class="num">2</div><h3>計画的な研修受講</h3><p>法定研修＋事業所内研修＋外部研修を年間計画に組み込む。</p></div>
+      <div class="step"><div class="num">3</div><h3>OJTとフォロー</h3><p>同行訪問・ケアプラン点検・面談で日常業務に学びを統合。</p></div>
+    </div>
+    <div class="footer"><span>第4章　事業所内人材育成</span><span class="pagenum">11 / 20</span></div>
+  </section>
+
+  <!-- 12: キャリアパス -->
+  <section class="slide">
+    <h1>キャリアパスの設計例</h1>
+    <table>
+      <tr><th>段階</th><th>経験年数</th><th>役割・期待</th><th>受講すべき研修</th></tr>
+      <tr><td>導入期</td><td>0〜1年</td><td>担当ケース20件以下／OJTで基礎習得</td><td>実務研修・新任者研修</td></tr>
+      <tr><td>基礎期</td><td>2〜4年</td><td>標準ケースを自立して担当</td><td>専門研修課程I／法定外スキル研修</td></tr>
+      <tr><td>応用期</td><td>5〜7年</td><td>困難事例・若手OJT支援</td><td>専門研修課程II／事例検討会講師</td></tr>
+      <tr><td>主任期</td><td>8年〜</td><td>地域連携・事業所運営・指導</td><td>主任介護支援専門員研修</td></tr>
+      <tr><td>指導者期</td><td>主任後</td><td>法定研修講師／地域ケア会議</td><td>主任更新研修／指導者養成</td></tr>
+    </table>
+    <h2>各段階で必須の仕組み</h2>
+    <ul>
+      <li><strong>目標設定面談</strong>（年2回）と<strong>処遇との連動</strong></li>
+      <li>段階移行の<strong>判定基準</strong>を文書化（属人化させない）</li>
+    </ul>
+    <div class="footer"><span>第4章　事業所内人材育成</span><span class="pagenum">12 / 20</span></div>
+  </section>
+
+  <!-- 13: 年間研修計画 -->
+  <section class="slide">
+    <h1>年間研修計画の立て方</h1>
+    <div class="two-col">
+      <div>
+        <h2>3層構造で計画する</h2>
+        <div class="card"><h3>① 法定研修（必須）</h3><p>都道府県告知をもとに4月時点で受講者・時期を確定。</p></div>
+        <div class="card accent"><h3>② 事業所内研修（月例）</h3><p>事例検討会・制度学習会・適切なケアマネジメント手法の勉強会。</p></div>
+        <div class="card"><h3>③ 外部研修・自己研鑽</h3><p>協会研修・学会・専門領域（医療・認知症・看取り等）。</p></div>
+      </div>
+      <div>
+        <h2>個人別研修計画書（フォーマット）</h2>
+        <ul>
+          <li>本人の到達目標（1年・3年）</li>
+          <li>受講予定研修（法定／法定外）</li>
+          <li>OJT項目とメンター</li>
+          <li>振り返り（半期ごと）</li>
+        </ul>
+        <div class="callout"><strong>運用のコツ：</strong>4月作成 → 9月中間レビュー → 翌年3月評価、の<strong>PDCA</strong>を回す。</div>
+      </div>
+    </div>
+    <div class="footer"><span>第4章　事業所内人材育成</span><span class="pagenum">13 / 20</span></div>
+  </section>
+
+  <!-- 14: 受講機会の確保 -->
+  <section class="slide">
+    <h1>受講機会を確保する職場体制</h1>
+    <div class="two-col">
+      <div class="card">
+        <h3>シフト・業務面</h3>
+        <ul>
+          <li>研修日の<strong>担当ケース引継ぎルール</strong>整備</li>
+          <li>主任ケアマネ間の<strong>相互バックアップ</strong></li>
+          <li>モニタリング訪問の<strong>前倒し</strong>調整</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>制度・処遇面</h3>
+        <ul>
+          <li>研修受講を<strong>業務扱い</strong>とする規程</li>
+          <li>受講料・交通費の<strong>事業所負担</strong></li>
+          <li>主任研修修了者への<strong>処遇加算</strong></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>環境・ICT面</h3>
+        <ul>
+          <li>eラーニング受講用の<strong>静音スペース</strong></li>
+          <li>ケアプランソフトでの<strong>業務効率化</strong></li>
+          <li>記録のテンプレート化で記入時間短縮</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>コミュニケーション面</h3>
+        <ul>
+          <li>受講予定の<strong>事前共有・カレンダー化</strong></li>
+          <li>利用者・家族への<strong>事前説明</strong></li>
+          <li>受講後の<strong>シェア会で全員に還元</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer"><span>第4章　事業所内人材育成</span><span class="pagenum">14 / 20</span></div>
+  </section>
+
+  <!-- 15: OJTの体系化 -->
+  <section class="slide">
+    <h1>OJTの体系化　— 4つの基本ツール</h1>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>同行訪問</h3><p>初回・困難事例で主任が同行。終了後に必ず振り返り。</p></div>
+      <div class="step"><div class="num">2</div><h3>ケアプラン点検</h3><p>毎月、主任が新人プランをレビュー。点検視点を標準化。</p></div>
+      <div class="step"><div class="num">3</div><h3>事例検討会</h3><p>月1回、全員参加。発表者持ち回りで指導力も育成。</p></div>
+      <div class="step"><div class="num">4</div><h3>1on1面談</h3><p>月1回30分。業務状況・キャリア・メンタル面まで対話。</p></div>
+    </div>
+    <div class="callout">
+      <strong>OJTを「指導者の善意」に任せない：</strong>記録様式・チェックリスト・点検視点を<strong>事業所共通のフォーマット</strong>として整備し、誰が指導しても一定の質を担保する。
+    </div>
+    <h2>主任ケアマネにとってのメリット</h2>
+    <ul>
+      <li>OJT実績そのものが<strong>主任更新研修の受講要件</strong>（指導実績）になる</li>
+      <li>指導を通じた<strong>自身の振り返り</strong>で更新研修の事例提出が容易に</li>
+    </ul>
+    <div class="footer"><span>第4章　事業所内人材育成</span><span class="pagenum">15 / 20</span></div>
+  </section>
+
+  <!-- 16: 学習効果を高める工夫 -->
+  <section class="slide">
+    <h1>研修効果を実務に定着させる工夫</h1>
+    <h2>「受けっぱなし」を防ぐ3つの仕掛け</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3>① 事前学習</h3>
+        <p>研修テキストに目を通し、<strong>持ち帰りたい問い</strong>を1つ決めてから参加する。</p>
+      </div>
+      <div class="card accent">
+        <h3>② 事業所内シェア会</h3>
+        <p>研修翌週に30分。<strong>「明日から変えること」</strong>を1つ宣言してもらう。</p>
+      </div>
+      <div class="card">
+        <h3>③ 3ヶ月後フォロー</h3>
+        <p>「変えると宣言したこと」が継続しているか、<strong>1on1で確認</strong>。</p>
+      </div>
+      <div class="card accent">
+        <h3>＋α ポートフォリオ</h3>
+        <p>受講記録・事例・指導実績を蓄積。主任更新時の<strong>提出資料が一気に楽</strong>になる。</p>
+      </div>
+    </div>
+    <div class="footer"><span>第4章　事業所内人材育成</span><span class="pagenum">16 / 20</span></div>
+  </section>
+
+  <!-- 17: 多職種連携・地域 -->
+  <section class="slide">
+    <h1>事業所の外に学びの場をつくる</h1>
+    <div class="two-col">
+      <div>
+        <h2>地域・多職種との連携</h2>
+        <ul>
+          <li><strong>地域ケア会議</strong>への積極参加（事例提供・コメント）</li>
+          <li>地域包括支援センター主催の<strong>研修・連絡会</strong></li>
+          <li>医療機関の<strong>退院前カンファレンス</strong>を学びの機会に</li>
+          <li>近隣事業所との<strong>合同事例検討会</strong></li>
+        </ul>
+      </div>
+      <div>
+        <h2>外部資源の活用</h2>
+        <ul>
+          <li>都道府県・市町村介護支援専門員協会の研修</li>
+          <li>日本ケアマネジメント学会など学術団体</li>
+          <li>「適切なケアマネジメント手法」関連の研修</li>
+          <li>主任更新研修の<strong>講師依頼を受ける側</strong>になる</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>外部活動は更新の追い風：</strong>地域ケア会議の事例提供や講師経験は、<strong>主任更新研修の要件</strong>として求められる「指導・地域貢献の実績」に直結する。
+    </div>
+    <div class="footer"><span>第4章　事業所内人材育成</span><span class="pagenum">17 / 20</span></div>
+  </section>
+
+  <!-- 18: 実践事例 -->
+  <section class="slide">
+    <h1>第5章　実践事例　A居宅介護支援事業所</h1>
+    <div class="two-col">
+      <div class="card">
+        <h3>事業所プロフィール</h3>
+        <ul>
+          <li>常勤ケアマネ6名（うち主任3名）</li>
+          <li>担当件数 約180件</li>
+          <li>特定事業所加算（I）取得</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>取り組み前の課題</h3>
+        <ul>
+          <li>主任の更新時期が重なり業務麻痺</li>
+          <li>研修参加が個人任せで非効率</li>
+          <li>新人OJTが属人化</li>
+        </ul>
+      </div>
+    </div>
+    <h2>実施した3つの施策</h2>
+    <ol>
+      <li><strong>人材台帳の整備</strong>と5年スパンの更新ローテーション</li>
+      <li><strong>月例事例検討会</strong>の定例化と発表者ローテ</li>
+      <li><strong>個人別研修計画書</strong>と半期面談の制度化</li>
+    </ol>
+    <div class="callout"><strong>結果：</strong>3年間で受講率100％／離職率低下／主任更新の取りこぼしゼロ／特定事業所加算の維持</div>
+    <div class="footer"><span>第5章　実践事例</span><span class="pagenum">18 / 20</span></div>
+  </section>
+
+  <!-- 19: チェックリスト -->
+  <section class="slide">
+    <h1>明日から始めるチェックリスト</h1>
+    <div class="summary-grid">
+      <div class="card">
+        <h3>□ 制度理解</h3>
+        <ul>
+          <li>新ガイドラインの確認</li>
+          <li>都道府県の施行スケジュール把握</li>
+          <li>eラーニング受講方法の確認</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>□ 更新管理</h3>
+        <ul>
+          <li>人材台帳の作成・更新</li>
+          <li>主任の更新期限のアラート設定</li>
+          <li>受講要件の充足状況の点検</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>□ 育成体制</h3>
+        <ul>
+          <li>キャリアパス図の作成</li>
+          <li>個人別研修計画書の運用</li>
+          <li>OJTフォーマットの整備</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>□ 学習文化</h3>
+        <ul>
+          <li>月例事例検討会の定例化</li>
+          <li>受講後シェア会の実施</li>
+          <li>ポートフォリオの作成支援</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer"><span>第5章　実践事例</span><span class="pagenum">19 / 20</span></div>
+  </section>
+
+  <!-- 20: クロージング -->
+  <section class="slide closing">
+    <h1>本日のまとめ</h1>
+    <p>法定研修改正は <strong>「研修体系の再設計」</strong> の好機。<br>
+    主任ケアマネ更新は <strong>「5年前から」</strong> の戦略で乗り切る。<br>
+    人材育成は <strong>「個人任せ」から「組織の仕組み」</strong> へ。</p>
+    <p style="margin-top: 40px; font-size: 18px;">ご清聴ありがとうございました</p>
+    <div style="position:absolute; bottom: 32px; right: 32px; font-size: 12px; opacity: 0.7;">20 / 20</div>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button id="prev" title="前へ">‹</button>
+  <div class="counter"><span id="cur">1</span> / <span id="total">20</span></div>
+  <button id="next" title="次へ">›</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  const total = slides.length;
+  document.getElementById('total').textContent = total;
+
+  function show(i) {
+    slides[idx].classList.remove('active');
+    idx = (i + total) % total;
+    slides[idx].classList.add('active');
+    document.getElementById('cur').textContent = idx + 1;
+  }
+  document.getElementById('prev').onclick = () => show(idx - 1);
+  document.getElementById('next').onclick = () => show(idx + 1);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') show(idx + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') show(idx - 1);
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(total - 1);
+  });
+</script>
+</body>
+</html>
