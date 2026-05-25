@@ -284,7 +284,7 @@ def slide_title():
 def slide_agenda():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "本日のアジェンダ", page="2 / 20", section="法定研修制度改正への対応")
+    add_title(s, "本日のアジェンダ", page="2 / 21", section="法定研修制度改正への対応")
     items = [
         ("1.", "法定研修制度改正の背景と全体像", "なぜ今、見直しが必要なのか"),
         ("2.", "新研修体系のポイント", "カリキュラム・受講方法の変更点"),
@@ -308,7 +308,7 @@ def slide_agenda():
 def slide_chapter1_bg():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "第1章　法定研修制度改正の背景", page="3 / 20", section="第1章　改正の背景")
+    add_title(s, "第1章　法定研修制度改正の背景", page="3 / 21", section="第1章　改正の背景")
     cw = Inches(5.7); ch = Inches(2.5)
     add_card(s, Inches(0.8), Inches(1.55), cw, ch, "環境変化①　利用者ニーズの多様化",
              ["独居高齢者・認認介護世帯の増加",
@@ -331,16 +331,16 @@ def slide_chapter1_bg():
 def slide_schedule():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "改正スケジュールと法定研修体系", page="4 / 20", section="第1章　改正の背景")
+    add_title(s, "改正スケジュールと法定研修体系", page="4 / 21", section="第1章　改正の背景")
     # 左カラム: タイムライン
     add_text(s, Inches(0.8), Inches(1.55), Inches(5.5), Inches(0.4),
-             "段階的な施行スケジュール", size=16, bold=True, color=PRIMARY_LIGHT)
+             "施行と運用", size=16, bold=True, color=PRIMARY_LIGHT)
     add_timeline(s, Inches(0.8), Inches(2.05), Inches(5.7), Inches(3.6),
-                 [("令和6年度〜", "新ガイドラインに基づく研修開始、eラーニング科目の本格導入"),
-                  ("令和7年度〜", "都道府県ごとに新カリキュラム順次移行"),
-                  ("令和8年度〜", "新体系への完全移行を目指す")])
-    add_text(s, Inches(0.8), Inches(5.7), Inches(5.7), Inches(0.6),
-             "※施行時期・移行方法は都道府県により異なるため、所管自治体の通知を確認のこと。",
+                 [("令和5年4月", "厚労省「介護支援専門員資質向上事業ガイドライン」公表"),
+                  ("令和6年4月", "新ガイドライン施行。オンライン研修は手引き等を踏まえ各実施機関が活用"),
+                  ("運用",       "実際の研修実施時期・運用は都道府県ごとの募集要項を確認")])
+    add_text(s, Inches(0.8), Inches(5.7), Inches(5.7), Inches(0.8),
+             "※施行時期・募集回数・運用方法は都道府県・実施機関により異なるため、所管自治体の最新通知を必ず確認のこと。",
              size=11, color=MUTED)
     # 右カラム: 表
     add_text(s, Inches(6.85), Inches(1.55), Inches(5.7), Inches(0.4),
@@ -359,16 +359,16 @@ def slide_schedule():
 def slide_main_points():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "新研修体系の主要な改正ポイント", page="5 / 20", section="第2章　新研修体系のポイント")
+    add_title(s, "新研修体系の主要な改正ポイント", page="5 / 21", section="第2章　新研修体系のポイント")
     sw_each = Inches(2.32); sh_each = Inches(2.6)
     gap = Inches(0.1)
     x0 = Inches(0.8)
     steps = [
         ("1", "カリキュラム整理", "科目間の重複を整理し、実践演習を中心とした構成へ。"),
-        ("2", "eラーニング拡大", "知識習得はオンライン化。集合研修は演習・対話中心に。"),
-        ("3", "適切なケアマネジメント手法", "疾患別・状態別の標準的支援を全課程で位置づけ。"),
+        ("2", "オンライン研修活用", "知識習得部分はオンライン化が進展。集合研修は演習・対話中心に。"),
+        ("3", "適切なケアマネジメント手法", "適切なケアマネジメント手法を踏まえた実践的な視点が重視。"),
         ("4", "多職種連携の強化", "医療・介護・地域資源との連携演習を充実。"),
-        ("5", "評価の改善", "形成的評価（修了後のフォロー）を導入。"),
+        ("5", "評価・振り返り", "研修記録シート・修了評価等で到達目標の確認・振り返りを重視。"),
     ]
     for i, (n, t, d) in enumerate(steps):
         x = x0 + i * (sw_each + gap)
@@ -381,7 +381,7 @@ def slide_main_points():
 def slide_elearning():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "eラーニング活用の留意点", page="6 / 20", section="第2章　新研修体系のポイント")
+    add_title(s, "オンライン研修活用の留意点", page="6 / 21", section="第2章　新研修体系のポイント")
     add_card(s, Inches(0.8), Inches(1.6), Inches(5.85), Inches(2.4),
              "メリット",
              ["受講機会の地域差の縮小",
@@ -412,33 +412,33 @@ def slide_elearning():
 def slide_renewal_current():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "第3章　主任ケアマネ更新研修の現状", page="7 / 20",
+    add_title(s, "第3章　主任ケアマネ更新研修の現状", page="7 / 21",
               section="第3章　主任ケアマネ更新研修")
     add_text(s, Inches(0.8), Inches(1.55), Inches(11.7), Inches(0.4),
              "制度の概要", size=16, bold=True, color=PRIMARY_LIGHT)
-    add_table(s, Inches(0.8), Inches(2.05), Inches(11.7), Inches(2.3),
+    add_table(s, Inches(0.8), Inches(2.05), Inches(11.7), Inches(2.6),
               ["項目", "内容"],
               [["更新サイクル", "主任介護支援専門員の更新は **5年ごと**"],
-               ["研修時間", "概ね **46時間**（都道府県により異なる）"],
-               ["主な受講要件", "主任ケアマネとしての一定の実務経験／指導実績 等"],
-               ["未受講のリスク", "主任ケアマネの資格失効 → **特定事業所加算・包括センター人員要件**に直撃"]],
+               ["研修時間", "国の実施要綱上、合計 **46時間以上**（都道府県により異なる）"],
+               ["主な受講要件", "都道府県により異なる。国の要綱では、研修の企画・講師・ファシリテーター経験、法定外研修への年4回以上の参加、学会発表、認定ケアマネジャー、都道府県が適当と認める者等が例示"],
+               ["未受講のリスク", "主任介護支援専門員の配置要件に影響し、**特定事業所加算や地域包括支援センターの人員体制**に支障が生じる可能性"]],
               col_widths=[3, 9])
-    add_callout(s, Inches(0.8), Inches(4.7), Inches(11.7), Inches(1.7),
+    add_callout(s, Inches(0.8), Inches(4.95), Inches(11.7), Inches(1.7),
                 "経営インパクト：",
-                "主任ケアマネが1名でも失効すると、特定事業所加算（I・II）や地域包括支援センターの三職種要件が満たせなくなる可能性。事業所収益・指定要件に直結する重大リスク。")
+                "主任ケアマネが失効した場合、事業所の主任配置数・加算区分等によっては、特定事業所加算や地域包括支援センターの人員体制に支障が生じる可能性がある。事業所運営に関わるリスクとして管理が必要。")
 
 
 def slide_renewal_issues():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "更新研修における4つの課題", page="8 / 20",
+    add_title(s, "更新研修における4つの課題", page="8 / 21",
               section="第3章　主任ケアマネ更新研修")
     cw = Inches(5.85); ch = Inches(2.3)
     add_card(s, Inches(0.8), Inches(1.6), cw, ch, "① 時間的負担",
              ["46時間以上の受講時間に加え、レポート・事例提出の準備が必要",
               "日常業務と並行しての学習負担が大きい"])
     add_card(s, Inches(6.7), Inches(1.6), cw, ch, "② 受講機会の限定",
-             ["都道府県開催で年1〜2回。定員制で抽選のことも",
+             ["開催回数・定員・選考方法は都道府県・実施機関により異なる",
               "受講できない年が続くと更新期限に間に合わないリスク"], accent=True)
     add_card(s, Inches(0.8), Inches(4.1), cw, ch, "③ 業務継続との両立",
              ["研修日のケース対応・モニタリング・担当者会議の調整",
@@ -451,7 +451,7 @@ def slide_renewal_issues():
 def slide_renewal_strategy():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "更新研修への戦略的アプローチ", page="9 / 20",
+    add_title(s, "更新研修への戦略的アプローチ", page="9 / 21",
               section="第3章　主任ケアマネ更新研修")
     add_text(s, Inches(0.8), Inches(1.55), Inches(11.7), Inches(0.4),
              "「5年前から逆算」する受講計画", size=16, bold=True, color=PRIMARY_LIGHT)
@@ -469,7 +469,7 @@ def slide_renewal_strategy():
 def slide_register():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "人材台帳（更新管理シート）の例", page="10 / 20",
+    add_title(s, "人材台帳（更新管理シート）の例", page="10 / 21",
               section="第3章　主任ケアマネ更新研修")
     add_table(s, Inches(0.8), Inches(1.55), Inches(11.7), Inches(2.6),
               ["氏名", "資格区分", "有効期限", "次回研修", "受講要件状況", "担当"],
@@ -494,7 +494,7 @@ def slide_register():
 def slide_chapter4():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "第4章　事業所内での計画的人材育成", page="11 / 20",
+    add_title(s, "第4章　事業所内での計画的人材育成", page="11 / 21",
               section="第4章　事業所内人材育成")
     add_callout(s, Inches(0.8), Inches(1.55), Inches(11.7), Inches(1.2),
                 "基本認識：",
@@ -513,10 +513,13 @@ def slide_chapter4():
 def slide_career():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "キャリアパスの設計例", page="12 / 20",
+    add_title(s, "キャリアパスの設計例（事業所モデルの一例）", page="12 / 21",
               section="第4章　事業所内人材育成")
-    add_table(s, Inches(0.8), Inches(1.55), Inches(11.7), Inches(3.0),
-              ["段階", "経験年数", "役割・期待", "受講すべき研修"],
+    add_text(s, Inches(0.8), Inches(1.45), Inches(11.7), Inches(0.35),
+             "※下記の経験年数・段階区分は事業所内モデルの例であり、法令上の基準ではありません。",
+             size=11, color=MUTED)
+    add_table(s, Inches(0.8), Inches(1.85), Inches(11.7), Inches(2.8),
+              ["段階", "経験年数（例）", "役割・期待", "受講すべき研修"],
               [["導入期", "0〜1年", "担当ケース20件以下／OJTで基礎習得", "実務研修・新任者研修"],
                ["基礎期", "2〜4年", "標準ケースを自立して担当", "専門研修課程I／法定外スキル研修"],
                ["応用期", "5〜7年", "困難事例・若手OJT支援", "専門研修課程II／事例検討会講師"],
@@ -537,7 +540,7 @@ def slide_career():
 def slide_annual_plan():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "年間研修計画の立て方", page="13 / 20",
+    add_title(s, "年間研修計画の立て方", page="13 / 21",
               section="第4章　事業所内人材育成")
     # 左
     add_text(s, Inches(0.8), Inches(1.55), Inches(5.85), Inches(0.4),
@@ -573,7 +576,7 @@ def slide_annual_plan():
 def slide_attendance():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "受講機会を確保する職場体制", page="14 / 20",
+    add_title(s, "受講機会を確保する職場体制", page="14 / 21",
               section="第4章　事業所内人材育成")
     cw = Inches(5.85); ch = Inches(2.4)
     add_card(s, Inches(0.8), Inches(1.6), cw, ch, "シフト・業務面",
@@ -583,7 +586,7 @@ def slide_attendance():
     add_card(s, Inches(6.7), Inches(1.6), cw, ch, "制度・処遇面",
              ["研修受講を業務扱いとする規程",
               "受講料・交通費の事業所負担",
-              "主任研修修了者への処遇加算"], accent=True)
+              "主任研修修了者への資格手当・役割手当等（事業所内処遇）"], accent=True)
     add_card(s, Inches(0.8), Inches(4.15), cw, ch, "環境・ICT面",
              ["eラーニング受講用の静音スペース",
               "ケアプランソフトでの業務効率化",
@@ -597,7 +600,7 @@ def slide_attendance():
 def slide_ojt():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "OJTの体系化　— 4つの基本ツール", page="15 / 20",
+    add_title(s, "OJTの体系化　— 4つの基本ツール", page="15 / 21",
               section="第4章　事業所内人材育成")
     sw_each = Inches(2.85); sh_each = Inches(2.5)
     x0 = Inches(0.8); gap = Inches(0.1)
@@ -616,7 +619,7 @@ def slide_ojt():
              "主任ケアマネにとってのメリット", size=15, bold=True, color=PRIMARY_LIGHT)
     runs = [
         [("■  ", {"size": 12, "color": ACCENT, "bold": True}),
-         ("OJT実績そのものが主任更新研修の受講要件（指導実績）になる", {"size": 13, "color": TEXT})],
+         ("OJT・事例検討・研修企画等の実績は、都道府県の受講要件や実績確認に関連する場合がある", {"size": 13, "color": TEXT})],
         [("■  ", {"size": 12, "color": ACCENT, "bold": True}),
          ("指導を通じた自身の振り返りで更新研修の事例提出が容易に", {"size": 13, "color": TEXT})],
     ]
@@ -626,7 +629,7 @@ def slide_ojt():
 def slide_retention():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "研修効果を実務に定着させる工夫", page="16 / 20",
+    add_title(s, "研修効果を実務に定着させる工夫", page="16 / 21",
               section="第4章　事業所内人材育成")
     add_text(s, Inches(0.8), Inches(1.55), Inches(11.7), Inches(0.4),
              "「受けっぱなし」を防ぐ3つの仕掛け", size=16, bold=True, color=PRIMARY_LIGHT)
@@ -644,7 +647,7 @@ def slide_retention():
 def slide_external():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "事業所の外に学びの場をつくる", page="17 / 20",
+    add_title(s, "事業所の外に学びの場をつくる", page="17 / 21",
               section="第4章　事業所内人材育成")
     # 左
     add_text(s, Inches(0.8), Inches(1.55), Inches(5.85), Inches(0.4),
@@ -676,25 +679,28 @@ def slide_external():
     add_rich_text(s, Inches(6.95), Inches(2.1), Inches(5.7), Inches(3), runs2, line_spacing=1.6)
     add_callout(s, Inches(0.8), Inches(5.3), Inches(11.7), Inches(1.4),
                 "外部活動は更新の追い風：",
-                "地域ケア会議の事例提供や講師経験は、主任更新研修の要件として求められる「指導・地域貢献の実績」に直結する。")
+                "地域ケア会議の事例提供や講師経験、法定外研修への参加等は、都道府県によっては主任更新研修の受講要件・実績確認に関連する場合がある。所管自治体の要綱を確認のこと。")
 
 
 def slide_case():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "第5章　実践事例　A居宅介護支援事業所", page="18 / 20",
-              section="第5章　実践事例")
-    add_card(s, Inches(0.8), Inches(1.55), Inches(5.85), Inches(1.8),
-             "事業所プロフィール",
+    add_title(s, "第5章　モデルケース　A居宅介護支援事業所（架空事例）", page="18 / 21",
+              section="第5章　モデルケース")
+    add_text(s, Inches(0.8), Inches(1.45), Inches(11.7), Inches(0.35),
+             "※本事例は、本資料の解説を目的としたモデルケースであり、特定の事業所の実績ではありません。",
+             size=11, color=MUTED)
+    add_card(s, Inches(0.8), Inches(1.85), Inches(5.85), Inches(1.7),
+             "事業所プロフィール（モデル）",
              ["常勤ケアマネ6名（うち主任3名）",
               "担当件数 約180件",
               "特定事業所加算（I）取得"])
-    add_card(s, Inches(6.7), Inches(1.55), Inches(5.85), Inches(1.8),
-             "取り組み前の課題",
+    add_card(s, Inches(6.7), Inches(1.85), Inches(5.85), Inches(1.7),
+             "取り組み前の課題（モデル）",
              ["主任の更新時期が重なり業務麻痺",
               "研修参加が個人任せで非効率",
               "新人OJTが属人化"], accent=True)
-    add_text(s, Inches(0.8), Inches(3.6), Inches(11.7), Inches(0.4),
+    add_text(s, Inches(0.8), Inches(3.75), Inches(11.7), Inches(0.4),
              "実施した3つの施策", size=16, bold=True, color=PRIMARY_LIGHT)
     runs = [
         [("1.  ", {"size": 14, "color": ACCENT, "bold": True}),
@@ -704,17 +710,17 @@ def slide_case():
         [("3.  ", {"size": 14, "color": ACCENT, "bold": True}),
          ("個人別研修計画書と半期面談の制度化", {"size": 14, "color": TEXT})],
     ]
-    add_rich_text(s, Inches(0.9), Inches(4.1), Inches(11.5), Inches(1.5), runs, line_spacing=1.6)
-    add_callout(s, Inches(0.8), Inches(5.7), Inches(11.7), Inches(0.95),
-                "結果：",
-                "3年間で受講率100％／離職率低下／主任更新の取りこぼしゼロ／特定事業所加算の維持")
+    add_rich_text(s, Inches(0.9), Inches(4.25), Inches(11.5), Inches(1.5), runs, line_spacing=1.6)
+    add_callout(s, Inches(0.8), Inches(5.85), Inches(11.7), Inches(0.95),
+                "想定される効果（モデル）：",
+                "受講機会の確実な確保／主任更新の取りこぼし防止／加算要件の安定的維持／OJT標準化による定着率改善")
 
 
 def slide_checklist():
     s = prs.slides.add_slide(blank)
     add_bg(s)
-    add_title(s, "明日から始めるチェックリスト", page="19 / 20",
-              section="第5章　実践事例")
+    add_title(s, "明日から始めるチェックリスト", page="19 / 21",
+              section="第5章　モデルケース")
     cw = Inches(5.85); ch = Inches(2.4)
     add_card(s, Inches(0.8), Inches(1.6), cw, ch, "□ 制度理解",
              ["新ガイドラインの確認",
@@ -732,6 +738,42 @@ def slide_checklist():
              ["月例事例検討会の定例化",
               "受講後シェア会の実施",
               "ポートフォリオの作成支援"], accent=True)
+
+
+def slide_references():
+    s = prs.slides.add_slide(blank)
+    add_bg(s)
+    add_title(s, "本資料の根拠と利用上の注意", page="20 / 21", section="出典・注記")
+    add_text(s, Inches(0.8), Inches(1.55), Inches(11.7), Inches(0.4),
+             "主な根拠資料", size=16, bold=True, color=PRIMARY_LIGHT)
+    runs1 = [
+        [("■  ", {"size": 12, "color": ACCENT, "bold": True}),
+         ("厚生労働省「介護支援専門員資質向上事業ガイドライン」（令和5年4月版、令和6年4月施行）",
+          {"size": 14, "color": TEXT})],
+        [("■  ", {"size": 12, "color": ACCENT, "bold": True}),
+         ("厚生労働省「主任介護支援専門員更新研修実施要綱」", {"size": 14, "color": TEXT})],
+        [("■  ", {"size": 12, "color": ACCENT, "bold": True}),
+         ("厚生労働省「介護支援専門員に係るオンライン研修の手引き」等",
+          {"size": 14, "color": TEXT})],
+    ]
+    add_rich_text(s, Inches(0.9), Inches(2.05), Inches(11.6), Inches(1.8),
+                  runs1, line_spacing=1.6)
+    add_callout(s, Inches(0.8), Inches(3.95), Inches(11.7), Inches(1.5),
+                "利用上の注意：",
+                "本資料は、上記ガイドラインおよび更新研修実施要綱を踏まえた実務整理である。実際の受講要件・募集時期・実施方法・オンライン研修の取扱いは、各都道府県および研修実施機関の最新通知を必ず確認すること。")
+    add_text(s, Inches(0.8), Inches(5.6), Inches(11.7), Inches(0.4),
+             "本資料の位置づけ", size=16, bold=True, color=PRIMARY_LIGHT)
+    runs2 = [
+        [("■  ", {"size": 12, "color": ACCENT, "bold": True}),
+         ("事業所内研修・管理者向け勉強会の素材として作成", {"size": 13, "color": TEXT})],
+        [("■  ", {"size": 12, "color": ACCENT, "bold": True}),
+         ("第5章のモデルケースは解説目的の架空事例", {"size": 13, "color": TEXT})],
+        [("■  ", {"size": 12, "color": ACCENT, "bold": True}),
+         ("キャリアパス・経験年数区分は事業所モデルの例であり法令上の基準ではない",
+          {"size": 13, "color": TEXT})],
+    ]
+    add_rich_text(s, Inches(0.9), Inches(6.05), Inches(11.6), Inches(0.9),
+                  runs2, line_spacing=1.4)
 
 
 def slide_closing():
@@ -756,7 +798,7 @@ def slide_closing():
     add_text(s, Inches(0.8), Inches(6.0), Inches(11.7), Inches(0.6),
              "ご清聴ありがとうございました", size=18, color=WHITE, align=PP_ALIGN.CENTER)
     add_text(s, Inches(11.5), Inches(6.85), Inches(1.5), Inches(0.4),
-             "20 / 20", size=11, color=WHITE, align=PP_ALIGN.RIGHT)
+             "21 / 21", size=11, color=WHITE, align=PP_ALIGN.RIGHT)
 
 
 # ====== 実行 ======
@@ -779,6 +821,7 @@ slide_retention()
 slide_external()
 slide_case()
 slide_checklist()
+slide_references()
 slide_closing()
 
 out = "/home/user/kaigo-ga-app/slides/法定研修制度改正への対応と主任ケアマネ更新研修の戦略.pptx"
