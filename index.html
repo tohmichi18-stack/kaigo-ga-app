@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>特定事業所加算II 勉強会｜困難ケースの受け入れ体制</title>
+<style>
+  :root{
+    --navy:#0f3057;
+    --blue:#1e6091;
+    --accent:#2a9d8f;
+    --warm:#e76f51;
+    --gold:#e9c46a;
+    --bg:#f4f7fa;
+    --ink:#23303a;
+    --muted:#5a6b76;
+    --line:#d7e1ea;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+    background:#1b2733;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  /* ===== Deck / Slide ===== */
+  .deck{position:relative;width:100vw;height:100vh;overflow:hidden;}
+  .slide{
+    position:absolute;inset:0;
+    display:none;
+    flex-direction:column;
+    padding:5vh 6vw;
+    background:var(--bg);
+    overflow:auto;
+  }
+  .slide.active{display:flex;animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+  h1{font-size:clamp(28px,4.4vw,56px);line-height:1.25;color:var(--navy);font-weight:800;letter-spacing:.02em;}
+  h2{font-size:clamp(22px,3.2vw,40px);color:var(--navy);font-weight:800;margin-bottom:.5em;
+     border-left:10px solid var(--accent);padding-left:.5em;line-height:1.3;}
+  h3{font-size:clamp(17px,2vw,24px);color:var(--blue);font-weight:700;margin:.2em 0;}
+  p,li{font-size:clamp(15px,1.7vw,21px);line-height:1.7;color:var(--ink);}
+  ul,ol{padding-left:1.3em;margin:.4em 0;}
+  li{margin:.35em 0;}
+  strong{color:var(--warm);}
+  .muted{color:var(--muted);}
+  .small{font-size:clamp(12px,1.3vw,16px);}
+
+  /* ===== Title slide ===== */
+  .title{
+    background:linear-gradient(135deg,var(--navy),var(--blue) 70%,var(--accent));
+    color:#fff;justify-content:center;
+  }
+  .title h1{color:#fff;font-size:clamp(30px,5vw,62px);}
+  .title .sub{font-size:clamp(16px,2.2vw,26px);color:var(--gold);margin-top:.8em;font-weight:700;}
+  .title .meta{margin-top:2em;color:#cfe0ee;font-size:clamp(13px,1.5vw,18px);}
+  .title .badge{
+    display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);
+    padding:.4em 1em;border-radius:999px;font-size:clamp(12px,1.4vw,16px);margin-bottom:1.2em;color:#fff;
+  }
+
+  /* ===== Layout helpers ===== */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.2em;margin-top:.6em;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1em;margin-top:.6em;}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.1em 1.3em;
+        box-shadow:0 4px 14px rgba(15,48,87,.06);}
+  .card h3{margin-top:0;display:flex;align-items:center;gap:.4em;}
+  .pill{display:inline-block;background:var(--accent);color:#fff;font-size:.78em;font-weight:700;
+        padding:.2em .7em;border-radius:999px;margin-bottom:.5em;}
+  .pill.warm{background:var(--warm);}
+  .pill.blue{background:var(--blue);}
+  .pill.gold{background:var(--gold);color:#5a4500;}
+
+  .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:.5em;margin-top:.8em;}
+  .flow .step{flex:1;min-width:130px;background:#fff;border:2px solid var(--blue);border-radius:12px;
+              padding:.8em;text-align:center;position:relative;}
+  .flow .step .n{display:inline-block;width:1.8em;height:1.8em;line-height:1.8em;border-radius:50%;
+                 background:var(--blue);color:#fff;font-weight:800;margin-bottom:.3em;}
+  .flow .arrow{align-self:center;color:var(--blue);font-size:1.6em;font-weight:800;}
+
+  table{border-collapse:collapse;width:100%;margin-top:.6em;background:#fff;border-radius:10px;overflow:hidden;
+        box-shadow:0 3px 10px rgba(15,48,87,.06);}
+  th,td{border:1px solid var(--line);padding:.6em .8em;text-align:left;font-size:clamp(13px,1.5vw,18px);}
+  th{background:var(--navy);color:#fff;font-weight:700;}
+  tr:nth-child(even) td{background:#eef4f9;}
+
+  .case{background:#fff;border-radius:16px;border:1px solid var(--line);overflow:hidden;
+        box-shadow:0 6px 20px rgba(15,48,87,.08);margin-top:.4em;}
+  .case .head{background:linear-gradient(90deg,var(--warm),var(--gold));color:#fff;padding:.7em 1.1em;
+              font-weight:800;font-size:clamp(16px,2vw,24px);display:flex;align-items:center;gap:.5em;}
+  .case .body{padding:1em 1.3em;}
+  .case .body .grid2{margin-top:0;}
+  .note{background:#fff7e6;border-left:6px solid var(--gold);padding:.8em 1.1em;border-radius:8px;margin-top:.7em;}
+  .good{background:#e9f7f4;border-left:6px solid var(--accent);padding:.8em 1.1em;border-radius:8px;}
+  .bad{background:#fdeee9;border-left:6px solid var(--warm);padding:.8em 1.1em;border-radius:8px;}
+
+  .kicker{color:var(--accent);font-weight:800;letter-spacing:.15em;font-size:clamp(12px,1.4vw,16px);margin-bottom:.3em;}
+  .lead{font-size:clamp(17px,2vw,24px);color:var(--muted);margin-top:.3em;}
+
+  .check li{list-style:none;position:relative;padding-left:1.7em;}
+  .check li::before{content:"\2714";position:absolute;left:0;color:var(--accent);font-weight:800;}
+
+  /* ===== Chrome / nav ===== */
+  .topbar{position:fixed;top:0;left:0;right:0;height:6px;background:var(--accent);
+          transform-origin:left;z-index:50;transition:transform .3s;}
+  .nav{position:fixed;bottom:18px;right:22px;display:flex;gap:8px;z-index:60;}
+  .nav button{background:var(--navy);color:#fff;border:none;width:42px;height:42px;border-radius:50%;
+              font-size:18px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.25);opacity:.9;}
+  .nav button:hover{opacity:1;background:var(--blue);}
+  .counter{position:fixed;bottom:24px;left:24px;color:var(--muted);font-size:14px;z-index:60;
+           background:rgba(255,255,255,.8);padding:.2em .8em;border-radius:999px;}
+  .footer-tag{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);color:var(--muted);
+              font-size:12px;z-index:55;opacity:.7;}
+
+  @media (max-width:760px){
+    .grid2,.grid3{grid-template-columns:1fr;}
+    .flow{flex-direction:column;}
+    .flow .arrow{transform:rotate(90deg);}
+  }
+  /* ===== Print ===== */
+  @media print{
+    body{background:#fff;}
+    .deck{height:auto;}
+    .slide{display:flex!important;position:relative;height:auto;min-height:96vh;page-break-after:always;
+           border-bottom:1px dashed #ccc;}
+    .nav,.counter,.topbar,.footer-tag{display:none!important;}
+  }
+</style>
+</head>
+<body>
+<div class="topbar" id="topbar"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 タイトル -->
+  <section class="slide title active">
+    <span class="badge">特定事業所加算II 算定事業所　内部勉強会資料</span>
+    <h1>困難ケースの受け入れ体制で実現する<br>確実性のある業務推進</h1>
+    <div class="sub">～ 加算IIの責任を、現場の力に変える ～</div>
+    <div class="meta">
+      対象：サービス提供責任者・訪問介護員・管理者　／　形式：事例検討型グループワーク<br>
+      開催日：2026年　　月　　日　　　会場：
+    </div>
+  </section>
+
+  <!-- 2 ねらい -->
+  <section class="slide">
+    <div class="kicker">PURPOSE</div>
+    <h2>本日のねらい</h2>
+    <p class="lead">「断らない事業所」ではなく、<strong>「組織として安全に受けられる事業所」</strong>を目指す。</p>
+    <div class="grid3">
+      <div class="card"><span class="pill blue">1. 共通理解</span>
+        <p>特定事業所加算IIの趣旨と、私たちに求められる体制を再確認する。</p></div>
+      <div class="card"><span class="pill">2. 体制の見える化</span>
+        <p>困難ケースを「個人」でなく「仕組み」で受ける流れを理解する。</p></div>
+      <div class="card"><span class="pill warm">3. 事例で実践</span>
+        <p>4つの事例で、判断・連携・記録の勘所を体得する。</p></div>
+    </div>
+    <div class="note"><strong>合言葉：</strong>属人化を減らし、誰が対応しても一定の質を保てる仕組みをつくる。</div>
+  </section>
+
+  <!-- 3 アジェンダ -->
+  <section class="slide">
+    <div class="kicker">AGENDA</div>
+    <h2>本日の流れ</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>第1部　理解編（約20分）</h3>
+        <ul>
+          <li>特定事業所加算IIの位置づけ</li>
+          <li>なぜ困難ケース受け入れ体制が要なのか</li>
+          <li>「困難ケース」の定義と類型</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>第2部　体制編（約20分）</h3>
+        <ul>
+          <li>受け入れの基本フロー（5ステップ）</li>
+          <li>5つの体制づくり（情報・チーム・緊急時・記録・育成）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>第3部　事例編（約30分）</h3>
+        <ul>
+          <li>事例1〜4のグループ検討</li>
+          <li>NG対応とGOOD対応の比較</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>第4部　まとめ（約10分）</h3>
+        <ul>
+          <li>自事業所の体制セルフチェック</li>
+          <li>明日からのアクション宣言</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 加算IIとは -->
+  <section class="slide">
+    <div class="kicker">BASIC</div>
+    <h2>特定事業所加算IIの位置づけ（再確認）</h2>
+    <p>特定事業所加算は、<strong>質の高いサービスを安定的に提供する体制</strong>を評価する加算です。区分により求める要件が異なります。</p>
+    <table>
+      <tr><th>区分</th><th>体制要件</th><th>人材要件</th><th>重度者等対応要件</th></tr>
+      <tr><td><strong>加算I</strong></td><td>○</td><td>○</td><td>○</td></tr>
+      <tr><td style="background:#fff3cd"><strong>加算II（当事業所）</strong></td><td style="background:#fff3cd">○</td><td style="background:#fff3cd">○</td><td style="background:#fff3cd">－</td></tr>
+      <tr><td><strong>加算III</strong></td><td>○</td><td>－</td><td>○</td></tr>
+    </table>
+    <div class="note">
+      加算IIは<strong>「体制要件」＋「人材要件（有資格者の割合・勤続年数等）」</strong>で算定します。重度者対応は必須要件ではありませんが、
+      <strong>体制要件として求められる「研修・会議・緊急時対応・健康管理」等の質こそが、困難ケースを受けられる組織力の土台</strong>になります。<br>
+      <span class="small muted">※要件・割合の詳細は最新の介護報酬告示・解釈通知（直近改定版）で必ずご確認ください。本資料は体制づくりの考え方を共有するものです。</span>
+    </div>
+  </section>
+
+  <!-- 5 体制要件と困難ケースの関係 -->
+  <section class="slide">
+    <div class="kicker">WHY</div>
+    <h2>なぜ「困難ケース受け入れ体制」が要なのか</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>① 加算の趣旨に直結する</h3>
+        <p>加算IIで求められる体制要件（個別研修計画／定期会議／文書による指示と報告／緊急時対応の明示／健康管理）は、
+        そのまま<strong>困難ケースを安全に受けるための装置</strong>です。</p>
+      </div>
+      <div class="card">
+        <h3>② 加算の「説明責任」になる</h3>
+        <p>加算を算定する＝対外的に質を約束すること。指導・実地指導の場でも、
+        <strong>体制が機能していることを記録で示せる</strong>ことが重要です。</p>
+      </div>
+      <div class="card">
+        <h3>③ 地域からの信頼につながる</h3>
+        <p>「あの事業所なら相談できる」という評価が、安定した依頼・稼働率・人材定着を生みます。</p>
+      </div>
+      <div class="card">
+        <h3>④ 職員を守る</h3>
+        <p>体制があれば、難しいケースを<strong>個人の頑張りに依存させない</strong>。バーンアウト・離職・事故を防ぎます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 困難ケースとは -->
+  <section class="slide">
+    <div class="kicker">DEFINE</div>
+    <h2>「困難ケース」とは何か</h2>
+    <p class="lead">「対応が難しい」を分解すると、原因ごとに必要な備えが見えてきます。</p>
+    <div class="grid2">
+      <div class="card"><span class="pill blue">医療・身体面</span>
+        <p>重度（要介護4・5）、喀痰吸引・経管栄養等の医療的ケア、ターミナル、急変リスク。</p></div>
+      <div class="card"><span class="pill">認知・精神面</span>
+        <p>認知症によるBPSD（拒否・暴言・徘徊）、精神疾患、意思疎通の困難。</p></div>
+      <div class="card"><span class="pill warm">家族・環境面</span>
+        <p>家族関係の葛藤、介護力不足、ハラスメント、不衛生な住環境、孤立。</p></div>
+      <div class="card"><span class="pill gold">社会・制度面</span>
+        <p>経済的困窮、サービス拒否、虐待の疑い、多問題を抱える世帯。</p></div>
+    </div>
+    <div class="note"><strong>視点：</strong>困難さは利用者の「属性」ではなく、<strong>支援する側の体制の不足から生まれる</strong>こともある。
+    体制を整えれば「困難」は「対応可能」に変わる。</div>
+  </section>
+
+  <!-- 7 受け入れフロー -->
+  <section class="slide">
+    <div class="kicker">FLOW</div>
+    <h2>困難ケース受け入れの基本フロー</h2>
+    <p>「受けるか／断るか」を個人が即答しない。<strong>5ステップで組織判断</strong>する。</p>
+    <div class="flow">
+      <div class="step"><span class="n">1</span><br><strong>相談受付</strong><br><span class="small">情報を一旦すべて受け止める</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="n">2</span><br><strong>情報収集・アセスメント</strong><br><span class="small">リスクと必要体制を見極める</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="n">3</span><br><strong>受入判定会議</strong><br><span class="small">組織で可否・条件を判断</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="n">4</span><br><strong>体制構築・開始</strong><br><span class="small">役割分担・手順・緊急時を明示</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="n">5</span><br><strong>モニタリング・見直し</strong><br><span class="small">定期会議で改善・撤退判断</span></div>
+    </div>
+    <div class="bad" style="margin-top:1em;"><strong>NG：</strong>電話口でサ責が一人で「うちでは無理です」／逆に「大丈夫です受けます」と即断する。</div>
+    <div class="good"><strong>GOOD：</strong>「持ち帰ってチームで検討し、◯日までにご連絡します」と、判断を仕組みに乗せる。</div>
+  </section>
+
+  <!-- 8 体制1 情報・アセスメント -->
+  <section class="slide">
+    <div class="kicker">SYSTEM 1/5</div>
+    <h2>体制づくり①　情報収集とアセスメント</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>受付時に必ず押さえる項目</h3>
+        <ul>
+          <li>心身状態・医療的ケアの有無</li>
+          <li>認知症・精神症状とその現れ方</li>
+          <li>家族構成・介護力・キーパーソン</li>
+          <li>住環境・動物・衛生・段差等</li>
+          <li>過去のサービス利用歴と中止理由</li>
+          <li><strong>これまで何が「困難」とされたか</strong></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>リスクアセスメントの観点</h3>
+        <ul>
+          <li>利用者の安全（急変・転倒・服薬）</li>
+          <li>職員の安全（感染・腰痛・ハラスメント）</li>
+          <li>必要なスキル・資格は揃うか</li>
+          <li>必要な人員・時間を確保できるか</li>
+          <li>連携先（医療・ケアマネ・地域包括）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note"><strong>ポイント：</strong>「受けられない理由」だけでなく<strong>「何が揃えば受けられるか（条件）」</strong>をセットで整理する。</div>
+  </section>
+
+  <!-- 9 体制2 チーム -->
+  <section class="slide">
+    <div class="kicker">SYSTEM 2/5</div>
+    <h2>体制づくり②　チーム体制・役割分担</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>「一人で抱えない」設計</h3>
+        <ul>
+          <li>主担当＋副担当の<strong>複数担当制</strong></li>
+          <li>困難ケースは<strong>経験者とペア</strong>で導入</li>
+          <li>サ責が司令塔として手順書を整備</li>
+          <li>相談・SOSを上げてよい文化を明示</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>サービス提供責任者の役割</h3>
+        <ul>
+          <li>受入判定会議の招集・進行</li>
+          <li>個別の手順書・留意点の作成と周知</li>
+          <li>ヘルパーへの<strong>文書による指示</strong></li>
+          <li>提供後の<strong>報告の収集</strong>とフィードバック</li>
+        </ul>
+      </div>
+    </div>
+    <div class="good"><strong>加算要件との接続：</strong>「文書等による指示及びサービス提供後の報告」「定期的な会議」は加算IIの体制要件そのもの。
+    困難ケースほど、この運用が品質を左右する。</div>
+  </section>
+
+  <!-- 10 体制3 緊急時 -->
+  <section class="slide">
+    <div class="kicker">SYSTEM 3/5</div>
+    <h2>体制づくり③　緊急時対応・リスク管理</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>緊急時対応の「明示」</h3>
+        <ul>
+          <li>急変・事故・連絡が取れない時の<strong>連絡フロー</strong>を1枚に</li>
+          <li>連絡先（家族／主治医／ケアマネ／管理者／119）の優先順位</li>
+          <li>各利用者宅に応じた<strong>個別の留意事項</strong></li>
+          <li>夜間・休日の連絡当番</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>職員を守るリスク管理</h3>
+        <ul>
+          <li>ハラスメント発生時の手順（中断・退避・報告）</li>
+          <li>感染症・身体的負担への備え</li>
+          <li>ヒヤリ・ハットの収集と共有</li>
+          <li><strong>「撤退・中止」も正当な選択肢</strong>と明文化</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note"><strong>カスタマーハラスメント：</strong>「利用者・家族だから我慢」ではなく、組織として線引きと対応手順を持つことが、結果的にサービス継続を可能にする。</div>
+  </section>
+
+  <!-- 11 体制4 記録 -->
+  <section class="slide">
+    <div class="kicker">SYSTEM 4/5</div>
+    <h2>体制づくり④　記録・報告・情報共有</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>記録は「確実性」の証拠</h3>
+        <ul>
+          <li>受入判定会議の<strong>議事録</strong>（誰が・何を根拠に判断したか）</li>
+          <li>個別手順書・指示書とその更新履歴</li>
+          <li>日々のサービス提供記録・報告</li>
+          <li>ヒヤリ・ハット／事故報告／苦情対応</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>情報共有の仕組み</h3>
+        <ul>
+          <li>申し送りノート・チャット等の一元化</li>
+          <li>変化があれば<strong>その日のうちに</strong>共有</li>
+          <li>定期会議で全員が同じ理解を持つ</li>
+          <li>ケアマネ・多職種への報告ルート</li>
+        </ul>
+      </div>
+    </div>
+    <div class="good"><strong>実地指導の視点：</strong>「やっている」を<strong>「記録で示せる」</strong>へ。困難ケースほど、判断の根拠と経過の記録が事業所を守る。</div>
+  </section>
+
+  <!-- 12 体制5 育成 -->
+  <section class="slide">
+    <div class="kicker">SYSTEM 5/5</div>
+    <h2>体制づくり⑤　研修・人材育成</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>個別研修計画（加算要件）</h3>
+        <ul>
+          <li>一人ひとりの課題に応じた<strong>個別研修計画</strong>の作成・実施</li>
+          <li>困難ケース対応スキル（認知症ケア・医療的ケア・接遇）を計画に位置づけ</li>
+          <li>OJT＝経験者同行による実地学習</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>本日のような事例検討会</h3>
+        <ul>
+          <li>うまくいった／いかなかった事例を共有</li>
+          <li>「自分ならどうするか」を言語化</li>
+          <li>暗黙知を<strong>手順・ナレッジ</strong>に変える</li>
+          <li>新人も同じ判断軸を持てるようにする</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note"><strong>狙い：</strong>研修を「加算のための義務」で終わらせず、<strong>困難ケースを受けられる現場力</strong>に転換する。</div>
+  </section>
+
+  <!-- 13 事例セクション扉 -->
+  <section class="slide title" style="background:linear-gradient(135deg,var(--warm),var(--gold));">
+    <span class="badge">CASE STUDY</span>
+    <h1 style="color:#fff;">第3部　事例で学ぶ<br>困難ケースの受け入れ</h1>
+    <div class="sub" style="color:#fff;">各事例：①状況把握 → ②NG対応 → ③GOOD対応 → ④体制のポイント</div>
+    <div class="meta" style="color:#fff;">グループで「自分の事業所ならどう動くか」を3分間ディスカッションしてください。</div>
+  </section>
+
+  <!-- 14 事例1 -->
+  <section class="slide">
+    <div class="case">
+      <div class="head">🧩 事例1：訪問拒否のある認知症（BPSD）のケース</div>
+      <div class="body">
+        <p><strong>状況：</strong>独居・要介護3、アルツハイマー型認知症。ヘルパーを「泥棒」と呼び玄関で拒否。
+        日によって態度が大きく変わり、担当が定まらず複数のヘルパーが交代で入っていた。</p>
+        <div class="grid2">
+          <div class="bad"><strong>NG対応</strong>
+            <ul><li>毎回ちがうヘルパーが訪問し関係が築けない</li><li>「拒否されたので帰りました」を個人判断で繰り返す</li><li>記録が共有されず原因が分析されない</li></ul>
+          </div>
+          <div class="good"><strong>GOOD対応</strong>
+            <ul><li><strong>主担当を固定</strong>し、声かけ・訪問時間を統一</li><li>拒否の<strong>パターンを記録・分析</strong>（時間帯・きっかけ）し手順書化</li><li>ケアマネ・主治医と共有し服薬・受診も検討</li></ul>
+          </div>
+        </div>
+        <div class="note"><strong>体制のポイント：</strong>BPSDは「対応の一貫性」が鍵。<strong>担当固定＋記録の蓄積＋チームでの分析</strong>を仕組みにする（=情報共有・会議・研修の体制が効く）。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 事例2 -->
+  <section class="slide">
+    <div class="case">
+      <div class="head">🩺 事例2：医療依存度が高いケース（喀痰吸引等）</div>
+      <div class="body">
+        <p><strong>状況：</strong>要介護5、神経難病で喀痰吸引・経管栄養が必要。退院に伴い在宅へ。家族から「夜間も含めて対応してほしい」と依頼。</p>
+        <div class="grid2">
+          <div class="bad"><strong>NG対応</strong>
+            <ul><li>資格・体制を確認せず「受けます」と即答</li><li>研修未修了のヘルパーに任せてしまう</li><li>急変時の連絡先・手順が未整備</li></ul>
+          </div>
+          <div class="good"><strong>GOOD対応</strong>
+            <ul><li><strong>喀痰吸引等研修修了者</strong>と登録状況を確認のうえ受入判定</li><li>主治医・訪問看護と<strong>役割分担と指示書</strong>を明確化</li><li>急変時フロー・緊急連絡網を1枚にして全員に配布</li></ul>
+          </div>
+        </div>
+        <div class="note"><strong>体制のポイント：</strong>「できる人がいるか」「指示系統が明確か」「緊急時が定まっているか」の3点を<strong>会議で確認してから受ける</strong>。医療連携は文書で残す。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 事例3 -->
+  <section class="slide">
+    <div class="case">
+      <div class="head">⚠️ 事例3：家族関係が複雑／ハラスメントリスク</div>
+      <div class="body">
+        <p><strong>状況：</strong>同居の家族がサービス内容に細かく介入し、ヘルパーに強い口調で要求を繰り返す。担当ヘルパーが訪問のたびに精神的に疲弊。担当を外してほしいと相談があった。</p>
+        <div class="grid2">
+          <div class="bad"><strong>NG対応</strong>
+            <ul><li>「利用者のため」と我慢を強い、個人で抱えさせる</li><li>担当を黙って交代させ根本対応をしない</li><li>記録に残さず管理者まで情報が上がらない</li></ul>
+          </div>
+          <div class="good"><strong>GOOD対応</strong>
+            <ul><li>事実を<strong>記録</strong>し、管理者・ケアマネと共有</li><li><strong>契約・重要事項に基づく対応範囲</strong>を家族へ説明</li><li>ハラスメント手順に沿い、必要なら複数名訪問・条件提示</li></ul>
+          </div>
+        </div>
+        <div class="note"><strong>体制のポイント：</strong>職員を守ることがサービス継続の前提。<strong>「我慢」ではなく「手順」</strong>で対応。組織として線引きを示すことが信頼にもつながる。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 事例4 -->
+  <section class="slide">
+    <div class="case">
+      <div class="head">🏠 事例4：セルフネグレクト／不衛生な住環境</div>
+      <div class="body">
+        <p><strong>状況：</strong>独居・要介護2。室内にゴミが堆積、入浴・受診を拒否。近隣からの苦情もあり、地域包括支援センターから相談が入った。</p>
+        <div class="grid2">
+          <div class="bad"><strong>NG対応</strong>
+            <ul><li>「不衛生だから」と訪問介護単独で抱え込む</li><li>本人の意思を無視して一気に片付けようとする</li><li>虐待・権利擁護の視点が抜ける</li></ul>
+          </div>
+          <div class="good"><strong>GOOD対応</strong>
+            <ul><li><strong>地域包括・行政・ケアマネと役割分担</strong>して関わる</li><li>本人との関係構築を優先し<strong>段階的に</strong>支援</li><li>セルフネグレクト＝権利擁護課題として記録・共有</li></ul>
+          </div>
+        </div>
+        <div class="note"><strong>体制のポイント：</strong>多問題ケースは<strong>1事業所で抱えない</strong>。地域のネットワークに「つなぐ」ことも、困難ケース受け入れ体制の一部。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18 組織で受ける -->
+  <section class="slide">
+    <div class="kicker">ORGANIZATION</div>
+    <h2>困難ケースを「組織で受ける」3原則</h2>
+    <div class="grid3">
+      <div class="card"><span class="pill blue">原則1</span>
+        <h3>一人で判断しない</h3>
+        <p>受入可否・撤退は<strong>会議で決める</strong>。個人を矢面に立たせない。</p></div>
+      <div class="card"><span class="pill">原則2</span>
+        <h3>条件で受ける</h3>
+        <p>「Yes/No」でなく<strong>「何が揃えば受けられるか」</strong>で考える。</p></div>
+      <div class="card"><span class="pill warm">原則3</span>
+        <h3>記録で残す</h3>
+        <p>判断根拠・経過・連携を残し、<strong>誰でも引き継げる</strong>状態にする。</p></div>
+    </div>
+    <div class="good" style="margin-top:1em;"><strong>これが「確実性のある業務推進」：</strong>属人的な勘や善意ではなく、
+    <strong>仕組みと記録で再現性を担保</strong>する。これこそ加算IIを算定する事業所の責任の果たし方。</div>
+  </section>
+
+  <!-- 19 連携 -->
+  <section class="slide">
+    <div class="kicker">NETWORK</div>
+    <h2>多職種・地域との連携マップ</h2>
+    <p>困難ケースほど、訪問介護「だけ」では完結しない。つなぐ先を全員が知っておく。</p>
+    <div class="grid3">
+      <div class="card"><h3>医療</h3><p>主治医／訪問看護／薬剤師。急変・医療的ケア・服薬管理の連携。指示は文書で。</p></div>
+      <div class="card"><h3>介護・相談</h3><p>ケアマネ（中心）／福祉用具／通所。情報共有と担当者会議の活用。</p></div>
+      <div class="card"><h3>地域・行政</h3><p>地域包括支援センター／市区町村／民生委員。虐待・権利擁護・経済問題。</p></div>
+    </div>
+    <div class="note"><strong>サ責の動き：</strong>変化を察知したら<strong>まずケアマネへ報告・相談</strong>。一事業所で抱えず、サービス担当者会議で体制を組み直す。</div>
+  </section>
+
+  <!-- 20 セルフチェック -->
+  <section class="slide">
+    <div class="kicker">CHECK</div>
+    <h2>自事業所の体制セルフチェック</h2>
+    <p>「はい」と言える項目はいくつ？　△の項目を今日の宿題に。</p>
+    <div class="grid2">
+      <div class="card">
+        <ul class="check">
+          <li>困難ケースの受入を<strong>会議で判断</strong>する仕組みがある</li>
+          <li>受付時の<strong>情報収集項目</strong>が標準化されている</li>
+          <li>個別の<strong>手順書・指示書</strong>を作成している</li>
+          <li>サービス提供後の<strong>報告</strong>が回収・共有される</li>
+        </ul>
+      </div>
+      <div class="card">
+        <ul class="check">
+          <li><strong>緊急時連絡フロー</strong>が1枚で全員に共有されている</li>
+          <li><strong>ハラスメント対応手順</strong>が明文化されている</li>
+          <li><strong>個別研修計画</strong>に困難ケース対応が含まれる</li>
+          <li>ケアマネ・地域包括への<strong>連携ルート</strong>が明確</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note"><strong>使い方：</strong>各自で採点 → グループで「△を1つ、来月までにどう改善するか」を1つ決める。</div>
+  </section>
+
+  <!-- 21 まとめ -->
+  <section class="slide">
+    <div class="kicker">SUMMARY</div>
+    <h2>まとめ：加算IIの責任を現場の力に</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>今日のキーメッセージ</h3>
+        <ul>
+          <li>困難さは「属性」でなく「体制不足」から生まれる</li>
+          <li>受け入れは<strong>5ステップで組織判断</strong></li>
+          <li>「一人で判断しない・条件で受ける・記録で残す」</li>
+          <li>加算の体制要件＝困難ケースを受ける装置</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>明日からのアクション宣言</h3>
+        <p class="muted">グループで1つずつ発表してください。</p>
+        <ul>
+          <li>私の事業所が次に整えるのは「　　　　　」</li>
+          <li>私が個人として変えるのは「　　　　　」</li>
+        </ul>
+        <div class="good" style="margin-top:.6em;">小さな一歩を、必ず<strong>仕組み（手順・記録）</strong>に落とす。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 22 クロージング -->
+  <section class="slide title" style="background:linear-gradient(135deg,var(--navy),var(--accent));">
+    <h1 style="color:#fff;">ご清聴ありがとうございました</h1>
+    <div class="sub">「断らない」のではなく、「組織で安全に受けられる」事業所へ。</div>
+    <div class="meta" style="color:#cfe0ee;margin-top:2em;">
+      質疑・ディスカッションタイム<br>
+      <span class="small">本資料の要件・割合等は、運用前に最新の介護報酬告示・解釈通知でご確認ください。</span>
+    </div>
+  </section>
+
+</div>
+
+<div class="counter"><span id="cur">1</span> / <span id="total">22</span></div>
+<div class="footer-tag">特定事業所加算II 内部勉強会｜困難ケース受け入れ体制　← → / Space で移動・P で印刷</div>
+<div class="nav">
+  <button id="prev" aria-label="前へ">‹</button>
+  <button id="next" aria-label="次へ">›</button>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const total=slides.length;
+  document.getElementById('total').textContent=total;
+  const bar=document.getElementById('topbar');
+  function show(n){
+    i=Math.max(0,Math.min(total-1,n));
+    slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+    document.getElementById('cur').textContent=i+1;
+    bar.style.transform='scaleX('+((i+1)/total)+')';
+    slides[i].scrollTop=0;
+  }
+  function next(){show(i+1);}
+  function prev(){show(i-1);}
+  document.getElementById('next').onclick=next;
+  document.getElementById('prev').onclick=prev;
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();next();}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+    else if(e.key==='Home'){show(0);}
+    else if(e.key==='End'){show(total-1);}
+    else if(e.key.toLowerCase()==='p'){window.print();}
+  });
+  // swipe (touch)
+  let x0=null;
+  document.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>50){dx<0?next():prev();}x0=null;
+  },{passive:true});
+  show(0);
+</script>
+</body>
+</html>
